@@ -1,0 +1,21 @@
+Steps to POST via telnet:
+
+1. run server.rb in terminal
+2. open new terminal tab, connect via telnet:
+    telnet localhost 4567
+3. POST /ingredients HTTP/1.1
+   Host: localhost
+   Content-Length: [number of characters including "ingredient=" and whitespace]
+4. <enter>
+5. ingredient=3+tablespoons+good+olive+oil
+        (use '+' in place of ' ')
+6. <enter>
+
+This will send the POST request to the server, which will add your new
+ingredient to the hash params, so:
+
+params["ingredient"] = "3 tablespoons good olive oil"
+
+The method then opens and appends params["ingredient"] to ingredients.txt, so
+when localhost:4567/ is refreshed, the GET method now pulls the new lines from
+ingredients.txt and adds them to the list of ingredients on localhost:4567/.

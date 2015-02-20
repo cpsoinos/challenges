@@ -1,0 +1,6 @@
+---
+title: "Leap Year"
+type: "exercise"
+description: "Determine if a given year is a leap year."
+ignore:
+- "leap-year.md"

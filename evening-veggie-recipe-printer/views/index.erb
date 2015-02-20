@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="home.css">
+    <title>Roasted Brussel Sprouts</title>
+  </head>
+
+  <body>
+    <h1>
+      <p>#=================================#</p>
+      <p># Recipe: <%= recipe[:name] %> #</p>
+      <p>#=================================#</p>
+    </h1>
+
+    <h2>
+      <p><%= recipe.keys[1].capitalize %></p>
+      <p>-----------</p>
+    </h2>
+
+    <ul>
+      <% recipe[:ingredients].each do |ingredient| %>
+        <li><%= ingredient %></li>
+      <% end %>
+    </ul>
+
+    <h2>
+      <p><%= recipe.keys[2].capitalize %></p>
+      <p>-----------</p>
+    </h2>
+
+    <ol>
+      <% recipe[:directions].each do |direction| %>
+        <li><%= direction %></li>
+      <% end %>
+  </body>
+</html>
