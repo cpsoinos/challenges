@@ -4,7 +4,7 @@ require 'pry'
 file_name = ARGV[0]
 action = ARGV[1]
 
-normalized_file = File.read(file_name).gsub(/\W+/, ' ')
+normalized_file = File.read(file_name).gsub(/\W+/, '')
 characters = normalized_file.chars
 weight = {}
 
@@ -16,6 +16,14 @@ end
 #   characters << word.chars
 # end
 binding.pry
+
+sorted_weight = weight.sort_by{|k,v| v}.reverse
+number_of_codes = sorted_weight.length
+
+codes = {}
+sorted_weight.each do |word, _occurrences|
+  codes
+
 puts weight
 
 # def compress(file)

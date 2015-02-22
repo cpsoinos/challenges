@@ -22,6 +22,7 @@ get "/articles/new" do
 end
 
 post "/articles/form" do
+  article_to_add = []
   session[:error_blank] = false
   session[:error_field] = nil
   session[:error_url] = false
@@ -49,13 +50,13 @@ post "/articles/form" do
   elsif params[:description].length <= 20
     session[:error_description] = true
     redirect "articles/error"
-  elsif session[:saved_urls].include?(params[:url])
-    session[:error_duplicate_url] = true
-    redirect "articles/error"
   end
 
+  params.each do |_header, input|
+    article_to_add << input
+  end
   CSV.open("database.csv", "a") do |csv|
-    csv << [params["title"], params["url"], params["description"]]
+    csv << article_to_add
   end
 
   redirect "/articles"
