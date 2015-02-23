@@ -1,5 +1,6 @@
 require 'pg'
 require 'pry'
+require 'csv'
 
 def db_connection
   begin
@@ -10,14 +11,10 @@ def db_connection
   end
 end
 
-ingredients_to_add = ["1 1/2 pounds Brussels sprouts",
-                      "3 tablespoons good olive oil",
-                      "3/4 teaspoon kosher salt",
-                      "1/2 teaspoon freshly ground black pepper"]
-
-ingredients_to_add.each do |ingredient|
-  db_connection do |conn|
-    conn.exec_params("INSERT INTO ingredients (name) VALUES ($1)", [ingredient])
+CSV.foreach("ingredients.csv") do |row|
+    binding.pry
+    db_connection do |conn|
+      conn.exec_params("INSERT INTO ingredients (name) VALUES ($1)", [row[1]])
   end
 end
 
