@@ -2,6 +2,7 @@ require 'pry'
 require 'sinatra'
 require 'CSV'
 require 'uri'
+require 'pg'
 
 saved_articles = []
 
@@ -9,12 +10,23 @@ configure do
   enable :sessions
 end
 
+def db_connection
+  begin
+    connection = PG.connect(dbname: "news_aggregator_development")
+    yield(connection)
+  ensure
+    connection.close
+  end
+end
+
+get "/" do
+  redirect "/articles"
+end
+
 get "/articles" do
-  CSV.foreach('database.csv', headers:true, header_converters: :symbol) do |row|
-     saved_articles << row.to_hash
-     saved_articles = saved_articles.uniq
-   end
-  erb :index, locals: { saved_articles: saved_articles }
+  articles = (db_connection { |conn| conn.exec("SELECT title,url,description FROM articles") }).to_a
+
+  erb :index, locals: { articles: articles }
 end
 
 get "/articles/new" do
@@ -22,7 +34,6 @@ get "/articles/new" do
 end
 
 post "/articles/form" do
-  article_to_add = []
   session[:error_blank] = false
   session[:error_field] = nil
   session[:error_url] = false
@@ -33,8 +44,10 @@ post "/articles/form" do
                        url: params["url"],
                        description: params["description"] }
 
-  CSV.open("database.csv", "r") do |row|
-    if row =~ [params[:url]]
+  existing_urls = (db_connection { |conn| conn.exec("SELECT url FROM articles")}).to_a
+
+  existing_urls.each do |url|
+    if url =~ [params[:url]]
       session[:error_duplicate_url] = true
       redirect "articles/error"
     end
@@ -52,11 +65,8 @@ post "/articles/form" do
     redirect "articles/error"
   end
 
-  params.each do |_header, input|
-    article_to_add << input
-  end
-  CSV.open("database.csv", "a") do |csv|
-    csv << article_to_add
+  db_connection do |conn|
+    conn.exec_params("INSERT INTO articles VALUES ($1, $2, $3)", [params["title"], params["url"], params["description"]])
   end
 
   redirect "/articles"
