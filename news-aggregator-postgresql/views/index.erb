@@ -1,0 +1,14 @@
+<h1>ARTICLES</h1>
+
+<% saved_articles.each do |row| %>
+  <% row.each do |header, info| %>
+    <% if header == :url %>
+      <p>URL: <a href="<%= info %>"><%= info %></a></p>
+    <% else %>
+      <p><%= header.capitalize %>: <%= info %></p>
+      <% end %>
+  <% end %>
+  <hr>
+<% end %>
+
+<p><a href="/articles/new">Submit a new article</a></p>

@@ -1,0 +1,19 @@
+<h1>Uh-oh!</h1>
+
+<% unless session[:error_blank] == false %>
+  <p>You're missing a <%= session[:error_field] %>. Please go back and try again.</p>
+<% end %>
+
+<% unless session[:error_url] == false %>
+  <p>That URL seems to be invalid. Please re-enter with http or https.</p>
+<% end %>
+
+<% if session[:error_description] == true %>
+  <p>Please enter a description longer than 20 characters.</p>
+<% end %>
+
+<% if session[:error_duplicate_url] == true %>
+  <p>That link has already been posted. Try another.</p>
+<% end %>
+
+<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
