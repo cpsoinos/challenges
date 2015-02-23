@@ -12,9 +12,9 @@ def db_connection
 end
 
 CSV.foreach("ingredients.csv") do |row|
-    binding.pry
-    db_connection do |conn|
-      conn.exec_params("INSERT INTO ingredients (name) VALUES ($1)", [row[1]])
+  binding.pry
+  db_connection do |conn|
+    conn.exec_params("INSERT INTO ingredients (name) VALUES ($1)", [row[1]])
   end
 end
 
