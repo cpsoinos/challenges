@@ -1,0 +1,32 @@
+header {
+  background-color: #FF0800;
+  padding: 3px;
+  margin: 0px;
+}
+
+table {
+  font-weight: bold;
+}
+
+#header-table td:first-child {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: "Courier New";
+}
+
+#header-table td:first-child + td {
+  font-size: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+img {
+  width: 350px;
+}
+
+body {
+  padding: 3px;
+  background-color: #F6F8EE;
+  font-family: "Arial";
+}
