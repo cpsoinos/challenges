@@ -1,5 +1,3 @@
-/** Some default styles, these can be modified or removed. **/
-
 html {
   background-color: #ccc;
 }
@@ -11,4 +9,16 @@ body {
   padding: 1em;
   background-color: white;
   border: 5px inset #ddd;
+}
+
+.reset {
+  float: right;
+}
+
+.field {
+  display: inline;
+}
+
+.action {
+  display: inline;
 }
