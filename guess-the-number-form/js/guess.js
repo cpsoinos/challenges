@@ -15,18 +15,27 @@ $("#guess-form").on("submit", function(event) {
   var $results = $('<li>').text(analysis[0] + analysis[1]);
 
   $(".analysis-message").prepend($results);
+  $("#guess").val("");
 });
 
 function validateGuess($guess) {
-  var analysis = [];
+  var analysis = [$guess];
 
-  if ($guess > theNumber) {
-    analysis.push($guess, " is too high.")
+  if ($guess > 100) {
+    analysis.push(" isn't between 1-100! Try again.")
+  } else if ($guess > theNumber) {
+    analysis.push(" is too high.")
   } else if ($guess < theNumber) {
-    analysis.push($guess, " is too low.")
+    analysis.push(" is too low.")
   } else {
-    analysis.push($guess, " is correct!")
+    analysis.push(" is correct!")
   };
 
   return analysis;
 }
+
+$(".reset").on("click", function(event) {
+  theNumber = getRandomInt(1, 101);
+  $(".analysis-message").empty();
+  $("#guess").val("");
+})
