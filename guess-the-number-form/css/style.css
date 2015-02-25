@@ -22,3 +22,16 @@ body {
 .action {
   display: inline;
 }
+
+h1 {
+  text-align: center;
+}
+
+ul li {
+  list-style: none;
+  margin-left: 33%;
+}
+
+#submit {
+  float: right;
+}

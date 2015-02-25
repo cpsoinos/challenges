@@ -23,6 +23,9 @@ function validateGuess($guess) {
 
   if ($guess > 100) {
     analysis.push(" isn't between 1-100! Try again.")
+  } else if (isNaN($guess)) {
+    analysis[0] = "That";
+    analysis.push(" is not a valid number. Try again.")
   } else if ($guess > theNumber) {
     analysis.push(" is too high.")
   } else if ($guess < theNumber) {

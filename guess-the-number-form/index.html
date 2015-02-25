@@ -2,12 +2,14 @@
 <html>
   <head>
     <title>Guess the Number</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
   </head>
   <body>
     <div class="reset">
-      <input type="button" value="Reset">
+      <input type="button" class="button" value="Reset">
     </div>
 
     <h1>Guess the Number!</h1>
@@ -17,7 +19,7 @@
     <span class="user-input">
       <form id="guess-form">
         <input type="text" id="guess" value="">
-        <input type="submit">
+        <input type="submit" id="submit" class="button success">
       </form>
     </span>
 
