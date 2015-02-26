@@ -12,7 +12,6 @@ $(function() {
         data.forEach(function(tweets) {
           var $newTweetText = "<div class='body'>" + tweets.text + "</div>";
           var $newTweetUser = "<div class='user'>" + tweets.username + "</div>";
-
           var $appendMe = "<li class='tweet'>" + $newTweetText + $newTweetUser + "</li>";
 
           $(".tweets").append($appendMe);
