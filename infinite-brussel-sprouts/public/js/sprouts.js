@@ -1,1 +1,26 @@
-// YOUR CODE GOES HERE
+$(function() {
+  var page = 2;
+  $(".more-sprouts").on("click", function() {
+    event.preventDefault();
+
+    $.ajax( {
+      type: 'get',
+      dataType: 'json',
+      url: '/tweets.json?page=' + page,
+      success: function(data) {
+        page +=1;
+        data.forEach(function(tweets) {
+          var $newTweetText = "<div class='body'>" + tweets.text + "</div>";
+          var $newTweetUser = "<div class='user'>" + tweets.username + "</div>";
+
+          var $appendMe = "<li class='tweet'>" + $newTweetText + $newTweetUser + "</li>";
+
+          $(".tweets").append($appendMe);
+        })
+      },
+      failure: function(data) {
+        alert('didnt work');
+      }
+    });
+  });
+});
