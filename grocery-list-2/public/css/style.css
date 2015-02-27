@@ -1,0 +1,19 @@
+body {
+  background-color: #FFFFFF;
+  font-family: verdana;
+  font-size: 1.25em;
+}
+
+ul {
+  width: 300px;
+  border: 1px solid #000000;
+}
+
+li {
+  padding: 5px;
+}
+
+form input[type=text] {
+  border: 1px solid #000000;
+  width: 300px;
+}
