@@ -12,7 +12,7 @@
   <body>
     <h1>Rock, Paper, Scissors!</h1>
 
-
+    <p><%= result_message %></p>
 
     <table>
       <tr class="table-header">
@@ -29,15 +29,22 @@
       </tr>
     </table>
 
-    <h2>Choose!</h2>
+    <% if session[:game_result].nil? %>
+      <h2>Choose!</h2>
 
-    <span>
-      <form action="/choose" method="post">
-        <input type="submit" name="choice" value="Rock">
-        <input type="submit" name="choice" value="Paper">
-        <input type="submit" name="choice" value="Scissors">
+      <span>
+        <form action="/choose" method="post">
+          <input type="submit" name="choice" value="Rock">
+          <input type="submit" name="choice" value="Paper">
+          <input type="submit" name="choice" value="Scissors">
+        </form>
+      </span>
+    <% else %>
+      <p><%= session[:game_result] %></p>
+      <form action="/reset" method="post">
+        <input type="submit" name="reset" value="Reset">
       </form>
-    </span>
+    <% end %>
 
   </body>
 </html>
