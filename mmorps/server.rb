@@ -8,6 +8,10 @@ use Rack::Session::Cookie, {
 get "/" do
   if session[:visit_count].nil?
     visit_count = 1
+    session[:human_score] = nil
+    session[:computer_score] = nil
+    session[:result_message] = nil
+    session[:game_result] = nil
   else
     visit_count = session[:visit_count].to_i
   end
