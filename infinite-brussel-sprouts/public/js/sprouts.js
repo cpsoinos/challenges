@@ -2,7 +2,7 @@ $(function() {
   var page = 2;
   $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-      
+
       $.ajax( {
         type: 'get',
         dataType: 'json',
