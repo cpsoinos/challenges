@@ -39,6 +39,7 @@ function validateGuess($guess) {
 
 $(".reset").on("click", function(event) {
   theNumber = getRandomInt(1, 101);
+  console.log(theNumber);
   $(".analysis-message").empty();
   $("#guess").val("");
 })
