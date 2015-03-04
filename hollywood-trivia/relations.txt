@@ -1,0 +1,79 @@
+
+                 List of relations
+ Schema |        Name         |   Type   |  Owner
+--------+---------------------+----------+----------
+ public | actors              | table    | cpsoinos
+ public | actors_id_seq       | sequence | cpsoinos
+ public | cast_members        | table    | cpsoinos
+ public | cast_members_id_seq | sequence | cpsoinos
+ public | genres              | table    | cpsoinos
+ public | genres_id_seq       | sequence | cpsoinos
+ public | movies              | table    | cpsoinos
+ public | movies_id_seq       | sequence | cpsoinos
+ public | studios             | table    | cpsoinos
+ public | studios_id_seq      | sequence | cpsoinos
+(10 rows)
+
+
+
+
+Table "public.actors"
+Column   |            Type             |                      Modifiers
+------------+-----------------------------+-----------------------------------------------------
+id         | integer                     | not null default nextval('actors_id_seq'::regclass)
+name       | character varying(255)      | not null
+created_at | timestamp without time zone |
+updated_at | timestamp without time zone |
+Indexes:
+ "actors_pkey" PRIMARY KEY, btree (id)
+
+
+ Table "public.cast_members"
+   Column   |            Type             |                         Modifiers
+------------+-----------------------------+-----------------------------------------------------------
+ id         | integer                     | not null default nextval('cast_members_id_seq'::regclass)
+ movie_id   | integer                     | not null
+ actor_id   | integer                     | not null
+ created_at | timestamp without time zone |
+ updated_at | timestamp without time zone |
+ character  | character varying(255)      |
+Indexes:
+    "cast_members_pkey" PRIMARY KEY, btree (id)
+
+
+Table "public.genres"
+   Column   |            Type             |                      Modifiers
+------------+-----------------------------+-----------------------------------------------------
+ id         | integer                     | not null default nextval('genres_id_seq'::regclass)
+ name       | character varying(255)      | not null
+ created_at | timestamp without time zone |
+ updated_at | timestamp without time zone |
+Indexes:
+    "genres_pkey" PRIMARY KEY, btree (id)
+
+
+Table "public.movies"
+ Column   |            Type             |                      Modifiers
+------------+-----------------------------+-----------------------------------------------------
+id         | integer                     | not null default nextval('movies_id_seq'::regclass)
+title      | character varying(255)      | not null
+year       | integer                     | not null
+synopsis   | text                        |
+rating     | integer                     |
+created_at | timestamp without time zone |
+updated_at | timestamp without time zone |
+genre_id   | integer                     | not null
+studio_id  | integer                     |
+Indexes:
+  "movies_pkey" PRIMARY KEY, btree (id)
+
+
+Table "public.studios"
+Column   |            Type             |                      Modifiers
+------------+-----------------------------+------------------------------------------------------
+id         | integer                     | not null default nextval('studios_id_seq'::regclass)
+name       | character varying(255)      | not null
+created_at | timestamp without time zone |
+updated_at | timestamp without time zone |
+Indexes:
+"studios_pkey" PRIMARY KEY, btree (id)
