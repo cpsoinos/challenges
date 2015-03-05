@@ -1,0 +1,19 @@
+
+<h1><%= name %> </h1>
+
+<table>
+  <tr class="table-header">
+    <td>Movie</td>
+    <td>Character</td>
+  </tr>
+
+  <% actors_id.each do |row| %>
+
+    <tr>
+      <td><%= row["title"] %></td>
+      <td><%= row["character"] %></td>
+    </tr>
+
+  <% end %>
+
+</table>

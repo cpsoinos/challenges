@@ -1,0 +1,11 @@
+<h1 class="page-title">Actors</h1>
+
+<ul>
+  <% actors.each do |actor| %>
+  <li><a href="/actors/<%= actor["id"] %>"><%= actor["name"] %></a></li>
+  <% end %>
+</ul>
+
+
+
+    <!-- <h2><a href="/movies">Movies</a></h2> -->

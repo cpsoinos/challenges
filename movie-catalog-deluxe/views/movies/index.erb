@@ -1,0 +1,22 @@
+<h1 class="page-title">Movies</h1>
+<table>
+  <tr class="table-header">
+    <td>Title</td>
+    <td>Year</td>
+    <td>Rating</td>
+    <td>Genre</td>
+    <td>Studio</td>
+  </tr>
+
+  <% movies.each do |movie| %>
+    <tr>
+      <td><a href="/movies/<%= movie["id"] %>"><%= movie["title"] %></a></td>
+      <td><%= movie["year"] %></td>
+      <td><%= movie["rating"] %></td>
+      <td><%= movie["genre"] %></td>
+      <td><%= movie["studio"] %></td>
+    </tr>
+
+  <% end %>
+
+</table>
