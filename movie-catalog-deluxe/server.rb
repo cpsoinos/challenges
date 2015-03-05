@@ -27,6 +27,16 @@ get "/actors" do
 
 end
 
+get "/movies" do
+  movies = (db_connection { |conn| conn.exec_params("SELECT movies.title, movies.year, movies.rating, genres.name, studios.name
+                                                      FROM movies
+                                                      LEFT JOIN studios
+                                                      ON movies.studio_id = studios.id
+                                                      JOIN genres
+                                                      ON movies.genre_id = genres.id
+                                                      ORDER BY movies.title ASC")}).to_a
+  erb :movies, locals: { movies: movies }
+
 
 
 
