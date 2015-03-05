@@ -4,7 +4,7 @@
 
 ```
 SELECT name, quantity, unit FROM ingredients
-WHERE name ILIKE '%brussels sprouts';
+WHERE name = 'Brussels sprouts';
 ```
 
 Before:
@@ -13,14 +13,14 @@ Before:
 
 After:
 
-![alt](https://www.dropbox.com/s/yvfchchc5ilcaxc/Screenshot%202015-03-05%2008.50.15.png?raw=1)
+![alt](https://www.dropbox.com/s/3bbelbsthexnrep/Screenshot%202015-03-05%2010.02.17.png?raw=1)
 
 * Calculate the total count of rows of ingredients with a `name` of `Brussels sprouts`.
 
 
 ```
 SELECT COUNT (*) FROM ingredients
-WHERE name ILIKE '%brussels sprouts';
+WHERE name = 'Brussels sprouts';
 ```
 
 Before:
@@ -29,14 +29,14 @@ Before:
 
 After:
 
-![alt](https://www.dropbox.com/s/s4hqvohvryrytwv/Screenshot%202015-03-05%2008.37.12.png?raw=1)
+![alt](https://www.dropbox.com/s/501zj4o5poll5n0/Screenshot%202015-03-05%2010.03.18.png?raw=1)
 
 * Find all `Brussels sprouts` ingredients having a unit type of `gallon(s)`.
 
 ```
 SELECT name, unit FROM ingredients
-WHERE unit ILIKE '%gallon%'
-AND name ILIKE '%brussels sprouts';
+WHERE unit = 'gallon(s)'
+AND name = 'Brussels sprouts';
 ```
 
 Before:
@@ -45,14 +45,14 @@ Before:
 
 After:
 
-![alt](https://www.dropbox.com/s/vqtfm8ut84ha1it/Screenshot%202015-03-05%2008.37.55.png?raw=1)
+![alt](https://www.dropbox.com/s/b0nxmyjbfq0czru/Screenshot%202015-03-05%2009.59.25.png?raw=1)
 
 * Find all rows that have a unit type of `gallon(s)`, a name of `Brussels sprouts` or has the letter `j` in it.
 
 ```
 SELECT name FROM ingredients
-WHERE unit ILIKE '%gallon%'
-AND name ILIKE '%j%Brussels sprouts%';
+WHERE unit = 'gallon(s)'
+AND name = 'Brussels sprouts';
 ```
 
 Before:
@@ -61,7 +61,7 @@ Before:
 
 After:
 
-![alt](https://www.dropbox.com/s/duwzjrssnv4h97d/Screenshot%202015-03-05%2008.38.32.png?raw=1)
+![alt](https://www.dropbox.com/s/bcowpxkmvlxf7rz/Screenshot%202015-03-05%2010.00.32.png?raw=1)
 
 Finally
 
