@@ -1,0 +1,11 @@
+.header {
+  font-weight: bold;
+}
+
+.instructions .header{
+  list-style: none;
+}
+
+.step {
+  list-style: default;
+}
