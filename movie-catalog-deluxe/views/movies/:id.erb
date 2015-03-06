@@ -1,0 +1,26 @@
+<h1><%= genre_studio.first["title"] %></h1>
+
+<table>
+  <tr class="table-header">
+    <td>Genre</td>
+    <td>Studio</td>
+  </tr>
+  <tr>
+    <td><%= genre_studio.first["genre"] %></td>
+    <td><%= genre_studio.first["studio"] %></td>
+  </tr>
+</table>
+
+<table>
+  <tr class="table-header">
+    <td>Actors</td>
+    <td>Role</td>
+  </tr>
+  <% actor_character.each do |row| %>
+    <tr>
+      <td><%= row["actor"] %></td>
+      <td><%= row["character"] %></td>
+    </tr>
+  <% end %>
+
+</table>

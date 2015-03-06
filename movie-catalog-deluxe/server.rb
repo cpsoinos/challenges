@@ -81,23 +81,40 @@ get "/movies" do
 
 end
 
-get "/movies/:title" do
+get "/movies/:title" do |id|
 
-  sql = <<-eos
-  SELECT genre.name, studio.name, actors.name, cast_members.character, movies.id
+
+  # sql = "SELECT genres.name FROM cast_members WHERE movie_id.cast_members = "
+  #
+  # genre = (db_connection { |conn| conn.exec_params(sql + id)}).to_a.first["genre"]
+  # studio =
+  # actors =
+  # actors_roles =
+
+  sql_actor_character = <<-eos
+  SELECT movies.title, actors.name AS actor, cast_members.character AS character, movies.id AS movie_id
     FROM cast_members
     JOIN movies
-    JOIN genres
-    ON movies.genre_id = genres.id
-    JOIN studios
-    ON movies.studio_id = studios.id
     ON cast_members.movie_id = movies.id
     JOIN actors
     ON cast_members.actor_id = actors.id
+    WHERE movies.id = '#{params["title"]}'
   eos
 
-  movies = (db_connection { |conn| conn.exec_params(sql)}).to_a
+  sql_genre_studio = <<-eos
+  SELECT movies.title, genres.name AS genre, studios.name AS studio, movies.id AS movie_id
+    FROM movies
+    LEFT JOIN genres
+    ON movies.genre_id = genres.id
+    LEFT JOIN studios
+    ON movies.studio_id = studios.id
+    WHERE movies.id = '#{params["title"]}'
+  eos
 
-  erb :'movies/:id'
+  actor_character = (db_connection { |conn| conn.exec_params(sql_actor_character)}).to_a
+  genre_studio = (db_connection { |conn| conn.exec_params(sql_genre_studio)}).to_a
 
+  erb :'movies/:id', locals: { actor_character: actor_character,
+                               genre_studio: genre_studio
+                             }
 end
