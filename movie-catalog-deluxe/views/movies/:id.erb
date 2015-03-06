@@ -18,7 +18,7 @@
   </tr>
   <% actor_character.each do |row| %>
     <tr>
-      <td><%= row["actor"] %></td>
+      <td><a href="/actors/ <%= row["actor_id"] %>"><%= row["actor"] %></a></td>
       <td><%= row["character"] %></td>
     </tr>
   <% end %>

@@ -40,7 +40,7 @@ get "/actors/:id" do |id|
   id = params[:id]
 
   sql = <<-eos
-  SELECT actors.name, movies.title, cast_members.character
+  SELECT actors.name, movies.title, cast_members.character, movies.id AS movie_id
     FROM cast_members
     JOIN movies
     ON cast_members.movie_id = movies.id
@@ -83,16 +83,8 @@ end
 
 get "/movies/:title" do |id|
 
-
-  # sql = "SELECT genres.name FROM cast_members WHERE movie_id.cast_members = "
-  #
-  # genre = (db_connection { |conn| conn.exec_params(sql + id)}).to_a.first["genre"]
-  # studio =
-  # actors =
-  # actors_roles =
-
   sql_actor_character = <<-eos
-  SELECT movies.title, actors.name AS actor, cast_members.character AS character, movies.id AS movie_id
+  SELECT movies.title, actors.name AS actor, cast_members.character AS character, movies.id AS movie_id, actors.id AS actor_id
     FROM cast_members
     JOIN movies
     ON cast_members.movie_id = movies.id
