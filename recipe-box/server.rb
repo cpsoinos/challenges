@@ -11,9 +11,19 @@ def db_connection
   end
 end
 
-sql = "SELECT name, id, description, instructions FROM recipes ORDER BY name"
+def parse_instructions(instructions)
+  # remove whitespace
+  instructions.each { |instruction| instruction.strip! }
+  #delete empty elements
+  instructions.delete_if { |instruction| (instruction == "") }
+end
 
+sql = "SELECT name, id, description, instructions FROM recipes ORDER BY name"
 RECIPES = (db_connection { |conn| conn.exec_params(sql) }).to_a
+
+############
+## ROUTES ##
+############
 
 get "/" do
   redirect "/recipes"
@@ -38,20 +48,12 @@ get "/recipes/:id" do |id|
   recipe_details = recipe_details_arry.first
   instructions = recipe_details["instructions"].split(/\n/)
 
-  def parse_instructions(instructions)
-    # remove whitespace
-    instructions.each { |instruction| instruction.strip! }
-    #delete empty elements
-    instructions.delete_if { |instruction| (instruction == "") }
-  end
 
   instructions = parse_instructions(instructions)
 
   ################################
   ######### INGREDIENTS ##########
   ################################
-
-  # parse_instructions(instructions)
 
   sql_ingredients = <<-eos
   SELECT ingredients.name
@@ -61,9 +63,6 @@ get "/recipes/:id" do |id|
   eos
 
   ingredients = (db_connection { |conn| conn.exec_params(sql_ingredients) }).to_a
-  # ingredients = ingredients_arry.first
-  #
-  # ingredients_list = (db_connection { |conn| conn.exec_params(sql) }).to_a
 
   erb :recipe_details, locals: { recipe_details: recipe_details,
                                  recipes: RECIPES,
