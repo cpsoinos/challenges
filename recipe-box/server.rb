@@ -2,6 +2,10 @@ require 'pry'
 require 'sinatra'
 require 'pg'
 
+####################
+## HELPER METHODS ##
+####################
+
 def db_connection
   begin
     connection = PG.connect(dbname: "recipes")
@@ -11,15 +15,32 @@ def db_connection
   end
 end
 
-def parse_instructions(instructions)
-  # remove whitespace
-  instructions.each { |instruction| instruction.strip! }
-  #delete empty elements
-  instructions.delete_if { |instruction| (instruction == "") }
+def get_recipes
+  sql = "SELECT name, id, description, instructions FROM recipes ORDER BY name"
+  recipes = (db_connection { |conn| conn.exec_params(sql) }).to_a
+  recipes
 end
 
-sql = "SELECT name, id, description, instructions FROM recipes ORDER BY name"
-RECIPES = (db_connection { |conn| conn.exec_params(sql) }).to_a
+SQL_RECIPE_INFO = "SELECT * FROM recipes WHERE id = $1"
+
+def get_recipe_details(id)
+  recipe_details = (db_connection { |conn| conn.exec_params(SQL_RECIPE_INFO, [id]) }).to_a[0]
+  recipe_details
+end
+
+def get_instructions(id)
+  instructions = (db_connection { |conn| conn.exec_params(SQL_RECIPE_INFO, [id]) }).to_a[0]
+  instructions = instructions["instructions"].split(/\n/)
+  instructions.each { |instruction| instruction.strip! }
+  instructions.delete_if { |instruction| (instruction == "") }
+  instructions
+end
+
+def get_ingredients(id)
+  sql = "SELECT * FROM ingredients WHERE recipe_id = $1"
+  ingredients = (db_connection { |conn| conn.exec_params(sql, [id]) }).to_a
+  ingredients
+end
 
 ############
 ## ROUTES ##
@@ -30,44 +51,15 @@ get "/" do
 end
 
 get "/recipes" do
+  @recipes = get_recipes
 
-  erb :index, locals: { recipes: RECIPES }
+  erb :index
 end
 
 get "/recipes/:id" do |id|
+  @recipe_details = get_recipe_details(id)
+  @ingredients = get_ingredients(id)
+  @instructions = get_instructions(id)
 
-  ################################
-  # INSTRUCTIONS AND DESCRIPTION #
-  ################################
-
-  sql_details = <<-eos
-  SELECT name, description, instructions FROM recipes WHERE id = #{params[:id]}
-  eos
-
-  recipe_details_arry = (db_connection { |conn| conn.exec_params(sql_details) }).to_a
-  recipe_details = recipe_details_arry.first
-  instructions = recipe_details["instructions"].split(/\n/)
-
-
-  instructions = parse_instructions(instructions)
-
-  ################################
-  ######### INGREDIENTS ##########
-  ################################
-
-  sql_ingredients = <<-eos
-  SELECT ingredients.name
-    FROM ingredients
-    JOIN recipes ON ingredients.recipe_id = recipes.id
-    WHERE recipes.id = #{params[:id]}
-  eos
-
-  ingredients = (db_connection { |conn| conn.exec_params(sql_ingredients) }).to_a
-
-  erb :recipe_details, locals: { recipe_details: recipe_details,
-                                 recipes: RECIPES,
-                                 ingredients: ingredients,
-                                 instructions: instructions
-                               }
-
+  erb :recipe_details
 end

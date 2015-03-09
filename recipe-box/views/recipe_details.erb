@@ -1,13 +1,13 @@
-<h1 class="page-title"><%= recipe_details["name"] %></h1>
+<h1 class="page-title"><%= @recipe_details["name"] %></h1>
 
-<p><%= recipe_details["description"] %></p>
+<p><%= @recipe_details["description"] %></p>
 
-<h2><%= instructions.first %></h2>
+<h2><%= @instructions.first %></h2>
 
-<% instructions.delete_at(0) %>
+<% @instructions.delete_at(0) %>
 
 <ol class="instructions">
-  <% instructions.each do |instruction| %>
+  <% @instructions.each do |instruction| %>
     <% if instruction =~ /^\d*/ %>
       <li><%= (instruction.gsub((/^\d*\w/), '')).strip %></li>
     <% else %>
@@ -19,7 +19,7 @@
 <h2>Ingredients:</h2>
 
 <ul>
-  <% ingredients.each do |ingredient| %>
+  <% @ingredients.each do |ingredient| %>
     <li><%= ingredient["name"] %></li>
   <% end %>
 </ul>

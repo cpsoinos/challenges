@@ -1,7 +1,6 @@
 <h1 class="page-title">Recipes</h1>
-
 <ul>
-  <% recipes.each do |recipe| %>
+  <% @recipes.each do |recipe| %>
     <li><a href="/recipes/<%= recipe["id"] %>"><%= recipe["name"] %></a></li>
   <% end %>
 </ul>
