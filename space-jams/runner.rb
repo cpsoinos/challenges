@@ -5,12 +5,12 @@ require 'pry'
 albums = []
 
 CSV.foreach('space_jams.csv', headers: true, header_converters: :symbol) do |row|
-  track = row.to_hash
-  album = albums.find { |a| a.id == track[:album_id] }
+  track = Track.new(row[:album_id], row[:track_id], row[:title], row[:track_number], row[:duration_ms], row[:album_title], row[:album_artists])
+  album = albums.find { |a| a.id == track.album_id }
 
   # if the album hasn't been added to the albums array yet, add it
   if album.nil?
-    album = Album.new(track[:album_id], track[:album_name], track[:artists])
+    album = Album.new(track.album_id, track.album_title, track.artists)
     albums << album
   end
 
