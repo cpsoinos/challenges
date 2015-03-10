@@ -73,9 +73,9 @@ class Recipe
 
   def check_recipe
     @ingredients.each do |ingredient|
-      return false if ingredient.is_valid? == false
+      return false if !ingredient.is_valid?
     end
-    return true
+    true
   end
 
   def summary
@@ -101,7 +101,7 @@ ingredients = [
     Ingredient.new(3.0, "tbspn(s)", "Good olive oil"),
     Ingredient.new(0.75, "tspn(s)", "Kosher salt"),
     Ingredient.new(0.5, "tspn(s)", "Freshly ground black pepper")
-]
+    ]
 
 instructions = [
     "Preheat oven to 400 degrees F.",
