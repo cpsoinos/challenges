@@ -29,7 +29,6 @@ end
 ## PLAYER'S TURN ##
 ###################
 
-
 until player.bust?("Dealer")
   if player.prompt == "stand"
     break
@@ -37,13 +36,13 @@ until player.bust?("Dealer")
   puts
 end
 
-if player.bust?("Dealer")
-  abort
-end
-
 ###################
 ## DEALER'S TURN ##
 ###################
+
+if player.bust?("Dealer")
+  abort
+end
 
 puts dealer
 puts "Dealer's hand score: #{dealer.hand_score}"
