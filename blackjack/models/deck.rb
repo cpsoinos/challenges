@@ -16,16 +16,8 @@ class Deck
     @collection.pop
   end
 
-  def collection # getter, gives us access to the state of the collection
+  def collection
     @collection
   end
-
-  # def deal!
-  #   @hand = Hand.new.hand
-  #   2.times do
-  #     @hand << draw!
-  #   end
-  #   @hand
-  # end
 
 end

@@ -56,16 +56,4 @@ class Hand
     result
   end
 
-  # def win
-  #   result = ""
-  #   if player_score < dealer_score < 21
-  #     result += "Dealer wins!"
-  #   elsif dealer_score < player_score < 21
-  #     result += "Player wins!"
-  #   else
-  #     result += "Push."
-  #   end
-  #   result
-  # end
-
 end
