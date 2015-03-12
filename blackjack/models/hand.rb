@@ -1,9 +1,8 @@
 class Hand
 
-  def initialize(name, deck)
+  def initialize(name)
     @hand = []
     @name = name
-    @deck = deck
   end
 
   attr_accessor :hand, :name, :deck
@@ -21,19 +20,9 @@ class Hand
   end
 
   def prompt
-    result = ""
+    response = ""
     print "Hit or stand (H/S)?: "
     response = gets.chomp.downcase
-    if response == "h" || response == "hit"
-      new_card = draw(deck.deal!).last
-      puts "Player was dealt #{new_card.value} of #{new_card.suit}."
-      puts "Player's hand score: #{hand_score}"
-    elsif response == "s" || response == "stand"
-      result = "stand"
-    else
-      puts "Stop being a dick and use a letter."
-    end
-    result
   end
 
   def blackjack?(name)
@@ -42,10 +31,8 @@ class Hand
     end
   end
 
-  def bust?(name)
-    if hand_score > 21
-      abort "BUST! #{name} wins."
-    end
+  def bust?
+    hand_score > 21
   end
 
   def to_s
