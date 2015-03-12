@@ -13,8 +13,6 @@ dealer = Hand.new("Dealer", deck)
   dealer.draw(deck.deal!)
 end
 
-# binding.pry
-
 puts player
 puts "Player's hand score: #{player.hand_score}"
 puts
@@ -43,6 +41,10 @@ if player.bust?("Dealer")
   abort
 end
 
+###################
+## DEALER'S TURN ##
+###################
+
 puts dealer
 puts "Dealer's hand score: #{dealer.hand_score}"
 
@@ -61,74 +63,3 @@ elsif player.hand_score > dealer.hand_score
 else
   puts "Push."
 end
-
-# player.win
-
-# until dealer.bust?("Player") || dealer.blackjack?("Dealer")
-#   if dealer.hand_score < 17
-#     new_card = dealer.draw(deck.deal!).last
-#     puts "Dealer was dealt #{new_card.value} of #{new_card.suit}."
-#     puts "Dealer's hand score: #{dealer.hand_score}"
-#   elsif
-#     dealer.hand_score >= 17 && player.hand_score < dealer.hand_score
-#     puts "Dealer wins."
-#     break
-#   elsif
-#     dealer.hand_score >= 17 && player.hand_score > dealer.hand_score
-#     puts "Player wins."
-#     break
-#   elsif
-#     dealer.hand_score >= 17 && player.hand_score == dealer.hand_score
-#     puts "Push."
-#     break
-#   end
-# end
-
-# # binding.pry
-# if player.hand_score > dealer.hand_score
-#   puts "Player wins!"
-# else
-#   puts "The house always wins."
-# end
-
-
-
-# while player.hand_score > 21
-#   player.prompt
-# end
-
-
-
-# end
-
-# prompt
-
-
-
-# player.hand.each do |card|
-#   puts " was dealt #{card.value} of #{card.suit}."
-# end
-#
-# puts player.hand_score
-
-
-#
-# dealer_hand.each do |card|
-#   puts "Dealer was dealt #{card.value} of #{card.suit}."
-# end
-#
-# def prompt
-#   print "Hit or stand (H/S):"
-#   input = gets.chomp
-# end
-#
-# binding.pry
-# prompt
-#
-# def hit
-#
-# end
-#
-# def stand
-#
-# end
