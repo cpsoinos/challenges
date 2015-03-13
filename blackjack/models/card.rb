@@ -19,8 +19,6 @@ class Card
     score = 0
     if card.face_card?
       score = 10
-    # elsif card.value == "A"
-    #   adjust_for_ace
     else
       score = card.value
     end
@@ -39,16 +37,5 @@ class Card
     end
     score
   end
-
-  #   ace_score = 0
-  #   if card_holder.hand.include?(card.value("A"))
-  #     if card_holder.hand_score > 10
-  #       ace_score = 11
-  #     else
-  #       ace_score = 1
-  #     end
-  #   end
-  #   ace_score
-  # end
 
 end

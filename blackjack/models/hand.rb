@@ -21,14 +21,6 @@ class Hand
 
   def hand_score
     Card.adjust_for_ace(raw_score, hand)
-
-
-
-    # result = 0
-    # @hand.each do |card|
-    #   result += (card.card_score(card)).to_i
-    # end
-    # result
   end
 
   def prompt
