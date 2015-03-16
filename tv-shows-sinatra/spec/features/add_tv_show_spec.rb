@@ -28,6 +28,17 @@ feature "user adds a new TV show" do
     expect(page).to have_content("Error: Synopsis cannot be more than 5000 characters.")
   end
 
+  scenario "start or end year is after 1900" do
+    visit '/television_shows/new'
+    fill_in 'title', with: 'House of Cards'
+    fill_in 'network', with: 'HBO'
+    fill_in 'starting_year', with: '1888'
+    fill_in 'ending_year', with: '1889'
+    click_button 'Add TV Show'
+
+    expect(page).to have_content("Error: Show must have started and ended after 1900.")
+  end
+
   scenario "successfully add a new show" do
     visit '/television_shows/new'
     fill_in 'title', with: 'Star Trek: TNG'

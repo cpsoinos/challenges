@@ -4,11 +4,20 @@
   <dt>Network:</dt>
   <dd><%= show.network %></dd>
   <dt>Years:</dt>
-  <dd><%= show.starting_year %> - <%= show.ending_year %></dd>
+  <% if show.ending_year %>
+    <dd><%= show.starting_year %> - <%= show.ending_year %></dd>
+  <% else %>
+    <dd><%= show.starting_year %> - Still running!</dd>
+  <% end %>
   <dt>Genre:</dt>
   <dd><%= show.genre %></dd>
 </dl>
 
-<p><%= show.synopsis %></p>
+<% if show.synopsis %>
+  <p><%= show.synopsis %></p>
+<% else %>
+  <p><%= error %></p>
+<% end %>
+
 
 <a href="/television_shows">Back to all shows</a>

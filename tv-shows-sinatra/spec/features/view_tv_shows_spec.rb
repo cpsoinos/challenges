@@ -1,6 +1,17 @@
 require "spec_helper"
+require "launchy"
 
 feature "user views list of TV shows" do
+  let(:game_of_thrones) { TelevisionShow.create!({
+        title: "Game of Thrones", network: "HBO",
+        starting_year: 2011, genre: "Fantasy"
+      }) }
+  let(:married_with_children) { TelevisionShow.create!({
+        title: "Married... with Children", network: "Fox",
+        starting_year: 1987, ending_year: 1997,
+        genre: "Comedy"
+      }) }
+
   # As a TV fanatic
   # I want to view a list of TV shows
   # So I can find new shows to watch
@@ -9,18 +20,6 @@ feature "user views list of TV shows" do
   # * I can see the names and networks of all TV shows
 
   scenario "view list of TV shows" do
-    # First create some sample TV shows
-    game_of_thrones = TelevisionShow.create!({
-        title: "Game of Thrones", network: "HBO",
-        starting_year: 2011, genre: "Fantasy"
-      })
-
-    married_with_children = TelevisionShow.create!({
-        title: "Married... with Children", network: "Fox",
-        starting_year: 1987, ending_year: 1997,
-        genre: "Comedy"
-      })
-
     # The user visits the index page
     visit "/television_shows"
 
@@ -39,6 +38,20 @@ feature "user views list of TV shows" do
   # * If the end year is not provided it should indicate that the show is still
   #   running.
 
-  pending "view details for a TV show"
-  pending "view details for a TV show with missing information"
+  scenario "view details for a TV show" do
+    visit "television_shows/#{game_of_thrones.id}"
+
+    expect(page).to have_content("#{game_of_thrones.title}")
+    expect(page).to have_content("#{game_of_thrones.network}")
+    expect(page).to have_content("#{game_of_thrones.starting_year}")
+    expect(page).to have_content("Still running!")
+    expect(page).to have_content("#{game_of_thrones.genre}")
+    expect(page).to have_content("#{game_of_thrones.synopsis}")
+  end
+
+  scenario "view details for a TV show with missing information" do
+    visit "television_shows/#{game_of_thrones.id}"
+
+    expect(page).to have_content("Error! Information missing.")
+  end
 end

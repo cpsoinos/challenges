@@ -21,7 +21,9 @@ end
 
 get "/television_shows/:id" do
   show = TelevisionShow.find(params[:id])
-  erb :show, locals: { show: show }
+  error = "Error! Information missing."
+
+  erb :show, locals: { show: show, error: error }
 end
 
 post "/television_shows" do
@@ -29,6 +31,8 @@ post "/television_shows" do
   show = TelevisionShow.new(params[:television_show])
   if params[:television_show][:title] == "" || params[:television_show][:network] == "" || params[:television_show][:starting_year] == ""
     error = "Error: Please provide title, network, and starting year."
+  elsif params[:television_show][:starting_year].to_i < 1900
+    error = "Error: Show must have started and ended after 1900."
   elsif params[:television_show][:synopsis].length > 5000
     error = "Error: Synopsis cannot be more than 5000 characters."
   else
