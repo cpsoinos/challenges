@@ -1,5 +1,9 @@
 <h1>Add Show</h1>
 
+<% if locals[:error] %>
+  <h3><%= locals[:error] %></h3>
+<% end %>
+
 <form action="/television_shows" method="post">
   <div>
     <label for="title">Title:</label>

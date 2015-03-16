@@ -1,4 +1,5 @@
 require "spec_helper"
+require "launchy"
 
 feature "user adds a new TV show" do
   # As a TV fanatic
@@ -21,20 +22,30 @@ feature "user adds a new TV show" do
     fill_in 'title', with: 'Star Trek: TNG'
     fill_in 'network', with: 'Syfi'
     fill_in 'starting_year', with: '1991'
-    # fill_in 'ending_year', with: '2015'
-    # fill_in 'genre', with: 'Drama'
-    # fill_in 'synopsis', with: 'Frank Underwood is awesome. Claire Underwood is even more awesome.'
     click_button 'Add TV Show'
 
     expect(page).to have_content("Star Trek: TNG (Syfi)")
   end
 
-  # scenario 'user does not supply title, network, or starting year' do
-  #   visit '/television_shows/new'
-  #   click_button 'Add TV Show'
-  #   save_and_open_page
-  #   expect(page).to have_content("Error: Please provide title, network, and starting year.")
-  # end
+  scenario 'user does not supply title, network, or starting year' do
+    visit '/television_shows/new'
+    click_button 'Add TV Show'
+
+    expect(page).to have_content("Error: Please provide title, network, and starting year.")
+  end
+
+  scenario 'synopsis is longer than 5000 characters' do
+    visit '/television_shows/new'
+    fill_in 'title', with: 'House of Cards'
+    fill_in 'network', with: 'HBO'
+    fill_in 'starting_year', with: '2013'
+    fill_in 'synopsis', with: "#{'z' * 5001}"
+    click_button 'Add TV Show'
+
+    save_and_open_page
+    expect(page).to have_content("Error: Synopsis cannot be more than 5000 characters.")
+  end
+
 
   pending "successfully add a new show"
   pending "fail to add a show with invalid information"
