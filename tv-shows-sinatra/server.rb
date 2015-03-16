@@ -25,7 +25,6 @@ get "/television_shows/:id" do
 end
 
 post "/television_shows" do
-  # binding.pry
   error = nil
   show = TelevisionShow.new(params[:television_show])
   if params[:television_show][:title] == "" || params[:television_show][:network] == "" || params[:television_show][:starting_year] == ""
@@ -35,7 +34,6 @@ post "/television_shows" do
   else
     if show.save
       redirect "/television_shows"
-      # erb :new, locals: { show: show }
     end
   end
   erb :new, locals: { show: show, error: error }

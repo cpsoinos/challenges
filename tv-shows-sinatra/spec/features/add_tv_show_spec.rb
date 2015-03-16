@@ -17,7 +17,18 @@ feature "user adds a new TV show" do
   # * If any of the above validations fail, the form should be
   #   re-displayed with the failing validation message.
 
-  scenario 'user supplies all info and submits' do
+  scenario 'synopsis is longer than 5000 characters' do
+    visit '/television_shows/new'
+    fill_in 'title', with: 'House of Cards'
+    fill_in 'network', with: 'HBO'
+    fill_in 'starting_year', with: '2013'
+    fill_in 'synopsis', with: "#{'z' * 5001}"
+    click_button 'Add TV Show'
+
+    expect(page).to have_content("Error: Synopsis cannot be more than 5000 characters.")
+  end
+
+  scenario "successfully add a new show" do
     visit '/television_shows/new'
     fill_in 'title', with: 'Star Trek: TNG'
     fill_in 'network', with: 'Syfi'
@@ -27,26 +38,10 @@ feature "user adds a new TV show" do
     expect(page).to have_content("Star Trek: TNG (Syfi)")
   end
 
-  scenario 'user does not supply title, network, or starting year' do
+  scenario "fail to add a show with invalid information" do
     visit '/television_shows/new'
     click_button 'Add TV Show'
 
     expect(page).to have_content("Error: Please provide title, network, and starting year.")
   end
-
-  scenario 'synopsis is longer than 5000 characters' do
-    visit '/television_shows/new'
-    fill_in 'title', with: 'House of Cards'
-    fill_in 'network', with: 'HBO'
-    fill_in 'starting_year', with: '2013'
-    fill_in 'synopsis', with: "#{'z' * 5001}"
-    click_button 'Add TV Show'
-
-    save_and_open_page
-    expect(page).to have_content("Error: Synopsis cannot be more than 5000 characters.")
-  end
-
-
-  pending "successfully add a new show"
-  pending "fail to add a show with invalid information"
 end
