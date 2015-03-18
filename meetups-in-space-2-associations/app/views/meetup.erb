@@ -15,6 +15,7 @@
 
 <p>Location: <%= meetup.location %></p>
 
-<form action="/join">
-  <input type="submit" value="Join this meetup!">
+<form action="/join" method="post">
+  <input type="submit" value="Join this meetup!" >
+  <input type="hidden" name="meetup_id"  value="<%= params[:meetup_id] %>" />
 </form>

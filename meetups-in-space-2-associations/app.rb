@@ -43,13 +43,25 @@ get '/:meetup_id' do |id|
 end
 
 post '/join' do
+  user_id = session[:user_id]
+  meetup_id = params[:meetup_id]
 
-  redirect '/:meetup_id'
+  Member.create(users_id: user_id, meetups_id: meetup_id)
+  flash[:notice] = "You've joined the meetup for #{Meetup.find_by(id: meetup_id).name}!"
+
+  redirect "/#{user_id}"
 end
 
-# post '/new_meetup' do
+post '/new_meetup' do
+  Meetup.create(
+    name: params[:name],
+    description: params[:description],
+    location: params[:location]
+    )
 
-# end
+  flash[:notice] = "You've created a new meetup for #{Meetup.find_by(name: params[:name]).name}"
+  redirect "/#{Meetup.find_by(name: params[:name]).id}"
+end
 
 get '/auth/github/callback' do
   auth = env['omniauth.auth']

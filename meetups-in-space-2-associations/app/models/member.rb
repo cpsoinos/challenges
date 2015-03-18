@@ -1,6 +1,6 @@
 class Member < ActiveRecord::Base
-  validates :user_id, presence: true
-  validates :meetup_id, presence: true
+  validates :users_id, presence: true
+  validates :meetups_id, presence: true
 
   belongs_to :user
   belongs_to :meetup
