@@ -1,55 +1,35 @@
-# Sinatra Active Record Starter Kit
+How would you return all the recipes in your database?
 
-This template provides a basic [Sinatra](http://www.sinatrarb.com/) application
-that includes:
+SELECT * FROM recipes;
 
-- [Active Record](http://guides.rubyonrails.org/active_record_querying.html)
-using [sinatra-activerecord](https://github.com/janko-m/sinatra-activerecord)
-- [PostgreSQL](http://www.postgresql.org/) for a database
-- [Sinatra::Reloader](http://www.sinatrarb.com/contrib/reloader.html) to
-  automatically reload modified files during development
-- [RSpec](https://github.com/rspec/rspec) for unit testing
-- [Capybara](https://github.com/jnicklas/capybara) for acceptance testing
-- [Pry](https://github.com/pry/pry) for debugging
+How would you return all the comments in your database?
 
-## Getting Started
+SELECT recipes.name, comments.user, comments.text FROM comments
+JOIN recipes ON comments.recipe_id = recipes.id;
 
-```no-highlight
-# Clone down this template
-git clone git@github.com:LaunchAcademy/sinatra-activerecord-starter-kit.git <YOUR_APP_NAME>
+How would you return the most recent recipe posted in your database?
 
-# Move into your app's directory
-cd <YOUR_APP_NAME>
+SELECT name FROM recipes
+ORDER BY id DESC LIMIT 1;
 
-# Install all the gems
-bundle install
+How would you return all the comments of the most recent recipe in your database?
 
-# Remove the old git history and start your own
-rm -rf .git && git init && git add -A && git commit -m 'Initial commit'
-```
+SELECT recipes.name, comments.user, comments.text FROM comments
+FULL OUTER JOIN recipes ON comments.recipe_id = recipes.id
+ORDER BY recipes.id DESC LIMIT 1;
 
-### Configuring Your Database
+How would you return the most recent comment of all your comments?
 
-This template is set up for using a PostgreSQL database. You will need to create a
-`config/database.yml`. There is an example at `config/database.example.yml`.
+SELECT text FROM comments
+ORDER BY id DESC LIMIT 1;
 
-Once you've created a `config/database.yml`, you can create your database with
-`rake db:create`.
+How would you return the recipe associated with the most recent comment in your database?
 
-## Rake Tasks
+SELECT recipes.name FROM comments
+JOIN recipes ON comments.recipe_id = recipes.id
+ORDER BY comments.id DESC LIMIT 1;
 
-This template uses the [sinatra-activerecord](https://github.com/janko-m/sinatra-activerecord)
-gem, which provides the following rails-like rake tasks:
+How would you return all comments that include the string brussels in them?
 
-```no-highlight
-rake db:create            # create the database from config/database.yml from the current Sinatra env
-rake db:create_migration  # create an ActiveRecord migration
-rake db:drop              # drops the data from config/database.yml from the current Sinatra env
-rake db:migrate           # migrate the database (use version with VERSION=n)
-rake db:rollback          # roll back the migration (use steps with STEP=n)
-rake db:schema:dump       # dump schema into file
-rake db:schema:load       # load schema into database
-rake db:seed              # load the seed data from db/seeds.rb
-rake db:setup             # create the database and load the schema
-rake db:test:prepare      # Prepare test database from development schema
-```
+SELECT text FROM comments
+WHERE text ILIKE '%brussels%';
