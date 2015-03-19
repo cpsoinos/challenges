@@ -57,7 +57,7 @@ post '/join' do
     Member.create(users_id: user_id, meetups_id: meetup_id)
     flash[:notice] = "You've joined the meetup for #{Meetup.find_by(id: meetup_id).name}!"
 
-    redirect "/#{user_id}"
+    redirect "/#{meetup_id}"
   else
     flash[:notice] = "You must be signed in to do that!"
     redirect "/#{meetup_id}"
