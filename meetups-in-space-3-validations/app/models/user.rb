@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :email, presence: true,
     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :avatar_url, presence: true, format: { with: => URI.regexp }
+  validates :avatar_url, presence: true, format: { with: URI.regexp }
 
   has_many :members
   has_many :meetups, through: :members

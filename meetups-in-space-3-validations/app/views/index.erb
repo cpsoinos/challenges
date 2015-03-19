@@ -11,8 +11,8 @@
   <form action="/new_meetup" method="POST">
     <input type="Text" name="name" placeholder="Meetup Name" >
     <input rows="5" type="Text" name="description" placeholder="Describe your meetup..." >
-    <input type="Text" name="start_time" placeholder="Start Time" >
-    <input type="Text" name="end_time" placeholder="End Time" >
+    <input type="datetime-local" name="start_time" placeholder="Start Time" >
+    <input type="datetime-local" name="end_time" placeholder="End Time" >
     <input type="Text" name="location" placeholder="Where will it take place?" >
     <input type="submit" value="Create a new meetup!">
   </form>

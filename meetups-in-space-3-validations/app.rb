@@ -36,6 +36,13 @@ get '/' do
   erb :index, locals: { meetups: meetups }
 end
 
+get '/sign_out' do
+  session[:user_id] = nil
+  flash[:notice] = "You have been signed out."
+
+  redirect '/'
+end
+
 get '/:meetup_id' do |id|
   meetup = Meetup.find_by(id: id)
 
@@ -46,21 +53,32 @@ post '/join' do
   user_id = session[:user_id]
   meetup_id = params[:meetup_id]
 
-  Member.create(users_id: user_id, meetups_id: meetup_id)
-  flash[:notice] = "You've joined the meetup for #{Meetup.find_by(id: meetup_id).name}!"
+  if signed_in?
+    Member.create(users_id: user_id, meetups_id: meetup_id)
+    flash[:notice] = "You've joined the meetup for #{Meetup.find_by(id: meetup_id).name}!"
 
-  redirect "/#{user_id}"
+    redirect "/#{user_id}"
+  else
+    flash[:notice] = "You must be signed in to do that!"
+    redirect "/#{meetup_id}"
+  end
 end
 
 post '/new_meetup' do
-  Meetup.create(
-    name: params[:name],
-    description: params[:description],
-    location: params[:location]
-    )
+  if signed_in?
+    meetup = Meetup.new(params)
 
-  flash[:notice] = "You've created a new meetup for #{Meetup.find_by(name: params[:name]).name}"
-  redirect "/#{Meetup.find_by(name: params[:name]).id}"
+    if meetup.save
+      flash[:notice] = "You've created a new meetup for #{Meetup.find_by(name: params[:name]).name}"
+      redirect "/#{Meetup.find_by(name: params[:name]).id}"
+    else
+      flash[:notice] = "Something went wrong. Make sure you filled in the correct information."
+      redirect '/'
+    end
+  else
+    flash[:notice] = "You must be signed in to do that!"
+    redirect '/'
+  end
 end
 
 get '/auth/github/callback' do
@@ -69,13 +87,6 @@ get '/auth/github/callback' do
   user = User.find_or_create_from_omniauth(auth)
   set_current_user(user)
   flash[:notice] = "You're now signed in as #{user.username}!"
-
-  redirect '/'
-end
-
-get '/sign_out' do
-  session[:user_id] = nil
-  flash[:notice] = "You have been signed out."
 
   redirect '/'
 end
