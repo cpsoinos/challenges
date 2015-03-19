@@ -15,12 +15,12 @@ $(function() {
             var $appendMe = "<li class='tweet'>" + $newTweetText + $newTweetUser + "</li>";
 
             $(".tweets").append($appendMe);
-          })
+          });
         },
         failure: function(data) {
           alert('didnt work');
         }
       });
-    };
+    }
   });
 });

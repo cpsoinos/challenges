@@ -33,7 +33,6 @@ class Album
     \tDuration (min): #{duration}
     \tTracks:
     #{track_list}
-
     summary
   end
 end
