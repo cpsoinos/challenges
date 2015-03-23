@@ -1,0 +1,18 @@
+<h1>Questions</h1>
+<% if !@questions.empty? %>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Created at</th>
+      <th></th>
+    </tr>
+
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.title %></td>
+        <td><%= question.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>
