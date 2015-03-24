@@ -7,7 +7,6 @@ feature 'views a question\'s answers', %Q{
 } do
 
   scenario 'user clicks on a question' do
-    user = FactoryGirl.create(:user)
     question = FactoryGirl.create(:question)
 
     visit 'questions'
@@ -18,7 +17,6 @@ feature 'views a question\'s answers', %Q{
   end
 
   scenario 'user views question details' do
-    user = FactoryGirl.create(:user)
     question = FactoryGirl.create(:question)
 
     visit '/questions/:id'

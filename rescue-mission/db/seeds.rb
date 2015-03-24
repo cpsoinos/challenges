@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 if Rails.env.development?
-  FactoryGirl.create(:user)
   FactoryGirl.create(:question)
   FactoryGirl.create(:answer)
 end

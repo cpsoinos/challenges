@@ -5,25 +5,19 @@ feature 'user views question details', %Q{
   I want to view a question's details
   So that I can effectively understand the question
 } do
-  # scenario 'specify valid credentials' do
-  #   user = FactoryGirl.create(:user)
 
-  #   visit new_user_session_path
+  let!(:question) { FactoryGirl.create(:question) }
 
-  #   fill_in 'Email', with: user.email
-  #   fill_in 'Password', with: user.password
+  scenario 'visitor clicks link from index' do
+    visit questions_path
+    click_link('This is question numero 1! I don\'t know the answer.')
+    expect(page).to have_content(question.description)
+  end
 
-  #   click_button 'Log in'
+  scenario 'visitor views question details' do
+    visit question_path(question)
+    expect(page).to have_content(question.title)
+    expect(page).to have_content(question.description)
+  end
 
-  #   expect(page).to have_content('Signed in successfully')
-  #   expect(page).to have_content('Sign Out')
-  # end
-
-  # scenario 'specify invalid credentials' do
-  #   visit new_user_session_path
-
-  #   click_button 'Log in'
-  #   expect(page).to have_content('Invalid email or password')
-  #   expect(page).to_not have_content('Sign Out')
-  # end
 end

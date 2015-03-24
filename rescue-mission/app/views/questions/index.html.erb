@@ -9,10 +9,16 @@
 
     <% @questions.each do |question| %>
       <tr>
-        <td><%= question.title %></td>
+        <td><%= link_to question.title, question_path(question) %></td>
         <td><%= question.created_at %></td>
       </tr>
     <% end %>
   </table>
 
+<% end %>
+
+<br>
+
+<% if user_signed_in? %>
+  <%= link_to 'Post a new question', new_question_path %>
 <% end %>

@@ -7,7 +7,6 @@ feature 'user views all questions', %Q{
   So that I can help others
 } do
 
-  let!(:user) { FactoryGirl.create(:user) }
   let!(:question) { FactoryGirl.create(:question) }
 
   scenario 'user sees list of questions' do
