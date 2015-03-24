@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:email) {|n| "user#{n}@example.com" }
+    sequence(:email) { |n| "user#{n}@example.com" }
     password "password"
   end
 
   factory :question do
-    sequence(:title) {|n| "This is question numero #{n}! I don't know the answer." }
+    sequence(:title) { |n| "This is question numero #{n}! I don't know the answer." }
     description "Aaaand this is the Question. Because, you just, you know, do the thing. And make sure that your answer is long enough! Because it was too short when I ran it last time."
     user_id 123
   end
