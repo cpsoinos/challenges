@@ -1,0 +1,1363 @@
+  [1m[36m (28.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (8.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20150319202054)
+  [1m[35m (0.3ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/cpsoinos/Desktop/launchtails/db/migrate/20150319202054_devise_create_users.rb:34)
+  [1m[36m (29.3ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (7.9ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (8.1ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150319202054"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDrinks (20150319212337)
+  [1m[35m (3.7ms)[0m  BEGIN
+  [1m[36m (25.7ms)[0m  [1mCREATE TABLE "drinks" ("id" serial primary key, "title" character varying NOT NULL, "description" text, "featured" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (9.4ms)[0m  CREATE UNIQUE INDEX  "index_drinks_on_title" ON "drinks"  ("title")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150319212337"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Migrating to AdditionalDrinkData (20150322005003)
+  [1m[36m (3.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (4.3ms)[0m  ALTER TABLE "drinks" ADD "category_id" integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "drinks" ADD "alcohol_level" character varying[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150322005003"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCategories (20150322140533)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (21.1ms)[0m  [1mCREATE TABLE "categories" ("id" serial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (6.8ms)[0m  CREATE UNIQUE INDEX  "index_categories_on_name" ON "categories"  ("name")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150322140533"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'categories'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'drinks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (324.2ms)[0m  [1mDROP DATABASE IF EXISTS "launchtails_test"[0m
+  [1m[35m (1669.1ms)[0m  CREATE DATABASE "launchtails_test" ENCODING = 'unicode'
+  [1m[36mSQL (3.3ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (47.1ms)[0m  CREATE TABLE "categories" ("id" serial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (9.8ms)[0m  [1mCREATE UNIQUE INDEX  "index_categories_on_name" ON "categories" USING btree ("name")[0m
+  [1m[35m (25.3ms)[0m  CREATE TABLE "drinks" ("id" serial primary key, "title" character varying NOT NULL, "description" text, "featured" boolean DEFAULT 'f' NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "category_id" integer, "alcohol_level" character varying) 
+  [1m[36m (10.3ms)[0m  [1mCREATE UNIQUE INDEX  "index_drinks_on_title" ON "drinks" USING btree ("title")[0m
+  [1m[35m (24.3ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (8.6ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (8.8ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users" USING btree ("reset_password_token")
+  [1m[36m (13.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (9.2ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (2.5ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150322140533')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150319202054')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150319212337')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150322005003')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mCategory Load (3.5ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT 1  [["name", "Martini"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mCategory Exists (0.5ms)[0m  SELECT  1 AS one FROM "categories" WHERE "categories"."name" = 'Martini' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Martini"], ["created_at", "2015-03-24 13:33:54.019763"], ["updated_at", "2015-03-24 13:33:54.019763"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mCategory Load (0.3ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT 1[0m  [["name", "Shooters"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCategory Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "categories" WHERE "categories"."name" = 'Shooters' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Shooters"], ["created_at", "2015-03-24 13:33:54.024133"], ["updated_at", "2015-03-24 13:33:54.024133"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT 1  [["name", "Tropical"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mCategory Exists (0.4ms)[0m  SELECT  1 AS one FROM "categories" WHERE "categories"."name" = 'Tropical' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Tropical"], ["created_at", "2015-03-24 13:33:54.027796"], ["updated_at", "2015-03-24 13:33:54.027796"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT 1[0m  [["name", "Fortified Wines"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mCategory Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "categories" WHERE "categories"."name" = 'Fortified Wines' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Fortified Wines"], ["created_at", "2015-03-24 13:33:54.031923"], ["updated_at", "2015-03-24 13:33:54.031923"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mDrink Load (2.9ms)[0m  SELECT  "drinks".* FROM "drinks" WHERE "drinks"."title" = $1 LIMIT 1  [["title", "Pumpkin Martian Martini"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mDrink Exists (0.6ms)[0m  SELECT  1 AS one FROM "drinks" WHERE "drinks"."title" = 'Pumpkin Martian Martini' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "drinks" ("title", "featured", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Pumpkin Martian Martini"], ["featured", "t"], ["created_at", "2015-03-24 13:33:54.064130"], ["updated_at", "2015-03-24 13:33:54.064130"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mDrink Load (0.3ms)[0m  [1mSELECT  "drinks".* FROM "drinks" WHERE "drinks"."title" = $1 LIMIT 1[0m  [["title", "Old Fashioned Astronaut"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mDrink Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "drinks" WHERE "drinks"."title" = 'Old Fashioned Astronaut' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "drinks" ("title", "featured", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["title", "Old Fashioned Astronaut"], ["featured", "t"], ["created_at", "2015-03-24 13:33:54.068659"], ["updated_at", "2015-03-24 13:33:54.068659"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mDrink Load (0.5ms)[0m  SELECT  "drinks".* FROM "drinks" WHERE "drinks"."title" = $1 LIMIT 1  [["title", "Spacewalk Spritzer"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mDrink Exists (0.4ms)[0m  SELECT  1 AS one FROM "drinks" WHERE "drinks"."title" = 'Spacewalk Spritzer' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "drinks" ("title", "featured", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Spacewalk Spritzer"], ["featured", "t"], ["created_at", "2015-03-24 13:33:54.073747"], ["updated_at", "2015-03-24 13:33:54.073747"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mDrink Load (0.4ms)[0m  [1mSELECT  "drinks".* FROM "drinks" WHERE "drinks"."title" = $1 LIMIT 1[0m  [["title", "Solar Mimosa"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mDrink Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "drinks" WHERE "drinks"."title" = 'Solar Mimosa' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "drinks" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["title", "Solar Mimosa"], ["created_at", "2015-03-24 13:33:54.078191"], ["updated_at", "2015-03-24 13:33:54.078191"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mDrink Load (0.5ms)[0m  SELECT  "drinks".* FROM "drinks" WHERE "drinks"."title" = $1 LIMIT 1  [["title", "Red Planet Whiskey Sour"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mDrink Exists (0.5ms)[0m  SELECT  1 AS one FROM "drinks" WHERE "drinks"."title" = 'Red Planet Whiskey Sour' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "drinks" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Red Planet Whiskey Sour"], ["created_at", "2015-03-24 13:33:54.083436"], ["updated_at", "2015-03-24 13:33:54.083436"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mDrink Load (0.4ms)[0m  [1mSELECT  "drinks".* FROM "drinks" WHERE "drinks"."title" = $1 LIMIT 1[0m  [["title", "Olympus Mons Manhattan"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mDrink Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "drinks" WHERE "drinks"."title" = 'Olympus Mons Manhattan' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "drinks" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["title", "Olympus Mons Manhattan"], ["created_at", "2015-03-24 13:33:54.087391"], ["updated_at", "2015-03-24 13:33:54.087391"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/featured-drinks" for ::1 at 2015-03-24 09:34:18 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [GET] "/featured-drinks"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (31.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (16.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (152.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (67.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (150.3ms)
+
+
+Started GET "/featured-drinks" for ::1 at 2015-03-24 09:35:31 -0400
+
+ActionController::RoutingError (No route matches [GET] "/featured-drinks"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (70.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (51.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (112.7ms)
+
+
+Started GET "/featured-drinks" for ::1 at 2015-03-24 09:35:56 -0400
+
+ActionController::RoutingError (No route matches [GET] "/featured-drinks"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (70.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (47.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (110.4ms)
+
+
+Started GET "/" for ::1 at 2015-03-24 09:36:07 -0400
+Processing by FeaturedDrinksController#index as HTML
+  Rendered featured_drinks/index.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    2:   <div class="large-12">
+    3:     <h1>Featured Drinks</h1>
+    4: 
+    5:     <%- if !@drinks.empty? -%>
+    6:       <table>
+    7:         <tr>
+    8:           <th>Title</th>
+  app/views/featured_drinks/index.html.erb:5:in `_app_views_featured_drinks_index_html_erb__2318612710856920136_70246430100620'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (68.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (51.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (112.4ms)
+
+
+Started GET "/" for ::1 at 2015-03-24 09:37:04 -0400
+Processing by FeaturedDrinksController#index as HTML
+  Rendered featured_drinks/index.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 15ms
+
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    2:   <div class="large-12">
+    3:     <h1>Featured Drinks</h1>
+    4: 
+    5:     <%- if !@drinks.empty? -%>
+    6:       <table>
+    7:         <tr>
+    8:           <th>Title</th>
+  app/views/featured_drinks/index.html.erb:5:in `_app_views_featured_drinks_index_html_erb__2318612710856920136_70246430100620'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (61.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (53.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (115.8ms)
+
+
+Started GET "/" for ::1 at 2015-03-24 09:37:41 -0400
+Processing by FeaturedDrinksController#index as HTML
+  [1m[35m (9.2ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "drinks" WHERE "drinks"."featured" = 't' LIMIT 25 OFFSET 0) subquery_for_count
+  [1m[36mDrink Load (0.5ms)[0m  [1mSELECT  "drinks".* FROM "drinks" WHERE "drinks"."featured" = 't' LIMIT 25 OFFSET 0[0m
+  Rendered featured_drinks/index.html.erb within layouts/application (40.4ms)
+Completed 500 Internal Server Error in 80ms
+
+ActionView::Template::Error (undefined method `truncate' for nil:NilClass):
+    12:         <%- @drinks.each do |drink| -%>
+    13:           <tr>
+    14:             <td><%= drink.title %></td>
+    15:             <td><%= drink.description.truncate(30) %></td>
+    16:           </tr>
+    17:         <%- end -%>
+    18:       </table>
+  app/views/featured_drinks/index.html.erb:15:in `block in _app_views_featured_drinks_index_html_erb__2318612710856920136_70246430100620'
+  app/views/featured_drinks/index.html.erb:12:in `_app_views_featured_drinks_index_html_erb__2318612710856920136_70246430100620'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (59.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (120.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-24 09:38:01 -0400
+Processing by FeaturedDrinksController#index as HTML
+  [1m[35m (0.5ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "drinks" WHERE "drinks"."featured" = 't' LIMIT 25 OFFSET 0) subquery_for_count
+  [1m[36mDrink Load (0.5ms)[0m  [1mSELECT  "drinks".* FROM "drinks" WHERE "drinks"."featured" = 't' LIMIT 25 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "drinks" WHERE "drinks"."featured" = 't'
+  Rendered featured_drinks/index.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 6142ms (Views: 6139.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 09:38:08 -0400
+
+
+Started GET "/new" for ::1 at 2015-03-24 09:42:24 -0400
+
+ActionController::RoutingError (No route matches [GET] "/new"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (91.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (56.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (124.4ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:42:39 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (49.1ms)
+Completed 500 Internal Server Error in 64ms
+
+ActionView::Template::Error (undefined method `radio' for #<ActionView::Helpers::FormBuilder:0x007fc710a0e810>):
+    20:       <%= f.text_area :description %>
+    21: 
+    22:       <%= f.label :featured %>
+    23:       <%= f.radio :featured %>
+    24: 
+    25:       <%= f.submit "Add Drink" %>
+    26:     <%- end -%>
+  app/views/drinks/new.html.erb:23:in `block in _app_views_drinks_new_html_erb__173816434307331034_70246477482420'
+  app/views/drinks/new.html.erb:15:in `_app_views_drinks_new_html_erb__173816434307331034_70246477482420'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (70.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (55.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (128.9ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:44:38 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 146ms (Views: 145.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 09:44:38 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 09:44:39 -0400
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:45:52 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (43.1ms)
+Completed 500 Internal Server Error in 53ms
+
+ActionView::Template::Error (undefined method `empty?' for nil:NilClass):
+    23:       <%= f.check_box :featured %>
+    24: 
+    25:       <%= f.label :category %>
+    26:       <%= f.select :category %>
+    27: 
+    28:       <%= f.submit "Add Drink" %>
+    29:     <%- end -%>
+  app/views/drinks/new.html.erb:26:in `block in _app_views_drinks_new_html_erb__173816434307331034_70246499425020'
+  app/views/drinks/new.html.erb:15:in `_app_views_drinks_new_html_erb__173816434307331034_70246499425020'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (66.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (66.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (137.5ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:50:42 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (1.3ms)
+Completed 500 Internal Server Error in 10ms
+
+SyntaxError (/Users/cpsoinos/Desktop/launchtails/app/views/drinks/new.html.erb:23: syntax error, unexpected ',', expecting ')'
+...nd=( f.radio_button (:featured, :not_featured) );@output_buf...
+...                               ^):
+  app/views/drinks/new.html.erb:23: syntax error, unexpected ',', expecting ')'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (63.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (55.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (125.0ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:51:38 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (wrong number of arguments (1 for 2..3)):
+    20:       <%= f.text_area :description %>
+    21: 
+    22:       <%= f.label :featured %>
+    23:       <%= f.radio_button (:featured) %>
+    24: 
+    25: 
+    26: 
+  app/views/drinks/new.html.erb:23:in `block in _app_views_drinks_new_html_erb__173816434307331034_70246489623620'
+  app/views/drinks/new.html.erb:15:in `_app_views_drinks_new_html_erb__173816434307331034_70246489623620'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (70.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (53.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (115.3ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:51:57 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (6.7ms)
+Completed 500 Internal Server Error in 21ms
+
+ActionView::Template::Error (wrong number of arguments (1 for 2..3)):
+    20:       <%= f.text_area :description %>
+    21: 
+    22:       <%= f.label :featured %>
+    23:       <%= f.radio_button :featured %>
+    24: 
+    25: 
+    26: 
+  app/views/drinks/new.html.erb:23:in `block in _app_views_drinks_new_html_erb__173816434307331034_70246427126380'
+  app/views/drinks/new.html.erb:15:in `_app_views_drinks_new_html_erb__173816434307331034_70246427126380'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (64.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (48.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (108.7ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:54:13 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 14ms
+
+SyntaxError (/Users/cpsoinos/Desktop/launchtails/app/views/drinks/new.html.erb:29: syntax error, unexpected ',', expecting ')'
+...f.radio_button (:alcohol_level, "Medium", id: "Medium") );@o...
+...                               ^
+/Users/cpsoinos/Desktop/launchtails/app/views/drinks/new.html.erb:29: syntax error, unexpected ',', expecting ')'
+...tton (:alcohol_level, "Medium", id: "Medium") );@output_buff...
+...                               ^
+/Users/cpsoinos/Desktop/launchtails/app/views/drinks/new.html.erb:29: syntax error, unexpected ')', expecting keyword_end
+...evel, "Medium", id: "Medium") );@output_buffer.safe_append='
+...                               ^):
+  app/views/drinks/new.html.erb:29: syntax error, unexpected ',', expecting ')'
+  app/views/drinks/new.html.erb:29: syntax error, unexpected ',', expecting ')'
+  app/views/drinks/new.html.erb:29: syntax error, unexpected ')', expecting keyword_end
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (65.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (113.3ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:54:43 -0400
+Processing by DrinksController#new as HTML
+  Rendered drinks/new.html.erb within layouts/application (1.3ms)
+Completed 500 Internal Server Error in 10ms
+
+SyntaxError (/Users/cpsoinos/Desktop/launchtails/app/views/drinks/new.html.erb:29: syntax error, unexpected tLABEL
+... f.radio_button (alcohol_level: "Medium", id: "Medium") );@o...
+...                               ^
+/Users/cpsoinos/Desktop/launchtails/app/views/drinks/new.html.erb:29: syntax error, unexpected ',', expecting ')'
+...utton (alcohol_level: "Medium", id: "Medium") );@output_buff...
+...                               ^
+/Users/cpsoinos/Desktop/launchtails/app/views/drinks/new.html.erb:29: syntax error, unexpected ')', expecting keyword_end
+...evel: "Medium", id: "Medium") );@output_buffer.safe_append='
+...                               ^):
+  app/views/drinks/new.html.erb:29: syntax error, unexpected tLABEL
+  app/views/drinks/new.html.erb:29: syntax error, unexpected ',', expecting ')'
+  app/views/drinks/new.html.erb:29: syntax error, unexpected ')', expecting keyword_end
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (73.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (50.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (111.7ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:55:15 -0400
+Processing by DrinksController#new as HTML
+  [1m[36mCategory Load (3.3ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered drinks/new.html.erb within layouts/application (16.0ms)
+Completed 500 Internal Server Error in 25ms
+
+ActionView::Template::Error (wrong number of arguments (1 for 2..3)):
+    26:       <%= f.select :category, Category.all.collect { |c| [c.name] } %>
+    27: 
+    28:       <%= f.label :alcohol_level %>
+    29:       <%= f.radio_button(alcohol_level: "Medium", id: "Medium") %>
+    30: 
+    31: 
+    32: 
+  app/views/drinks/new.html.erb:29:in `block in _app_views_drinks_new_html_erb__173816434307331034_70246516601760'
+  app/views/drinks/new.html.erb:15:in `_app_views_drinks_new_html_erb__173816434307331034_70246516601760'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (65.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (56.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (122.8ms)
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:55:36 -0400
+Processing by DrinksController#new as HTML
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered drinks/new.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 135ms (Views: 133.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 09:55:36 -0400
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:59:31 -0400
+Processing by DrinksController#new as HTML
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered drinks/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 119ms (Views: 116.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 09:59:32 -0400
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 09:59:45 -0400
+Processing by DrinksController#new as HTML
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered drinks/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 106ms (Views: 105.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 09:59:45 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 09:59:46 -0400
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 10:00:18 -0400
+Processing by DrinksController#new as HTML
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered drinks/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 103ms (Views: 101.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 10:00:18 -0400
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 10:00:50 -0400
+Processing by DrinksController#new as HTML
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered drinks/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 130ms (Views: 129.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 10:00:51 -0400
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 10:01:14 -0400
+Processing by DrinksController#new as HTML
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered drinks/new.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 122ms (Views: 121.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 10:01:15 -0400
+
+
+Started GET "/drinks/new" for ::1 at 2015-03-24 10:01:23 -0400
+Processing by DrinksController#new as HTML
+  [1m[35mCategory Load (0.4ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered drinks/new.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 118ms (Views: 117.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application-0ca9555282140d670af26864e6f437c7.css?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/scaffolds-abee9dcf8a28fd5aa65cf2363b3af25b.css?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation-013a9ecfcbd0d277665f83c66e076e18.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation_and_overrides-43207693ff69e2f9b77f74b068176fdd.css?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-cecd3b8dfdb9535c145e3160cca57cae.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-07d483c126d868809345e4abbcfd54a5.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-e54c2d9000574a39e07b2e6ede6ae0f6.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-b0828edefaad3278cd85c2faf6fd20ef.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-c6b22cf8e5474c59dc0bc19e2d290da5.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-adf4ca4cb9a1f36677701d7d06489ead.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-7f23c30298ef55f2db505f357bd4a799.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-8cd3c13f48f6d78fb172bb5200551918.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-0c2112e52f2de840e27058c4912dd869.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-925ec65dcf6be03dd5c7a1d472845b27.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-7bd8d9ca180151af16ff7678033f8212.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-66a6fcccc01097ba84b9e9fb84a429ef.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-0d9dd6504af28bc75bdb999fbb120872.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-5214a0ecffb0be84dc9247c31455ef50.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-ba04adaaf787a047a2bc9195842bb938.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-b93ba11c4146c58dd7d95ba14769e640.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/foundation-cf9c2be01a146b330f05b712f6779903.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
+
+
+Started GET "/assets/application-7b0fcdfa40208ffc00053de20a565c53.js?body=1" for ::1 at 2015-03-24 10:01:24 -0400
