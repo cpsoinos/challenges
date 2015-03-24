@@ -14,8 +14,12 @@ class DrinksController < ApplicationController
   end
 
   def destroy
-    Drink.find(params[:id]).destroy
-    flash[:notice] = 'Drink deleted.'
+    drink = Drink.find(params[:id])
+    if drink.destroy
+      flash[:notice] = 'Drink deleted.'
+    else
+      flash[:notice] = 'Drink was not deleted.'
+    end
     redirect_to '/drinks'
   end
 
