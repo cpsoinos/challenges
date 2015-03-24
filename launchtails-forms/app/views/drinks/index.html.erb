@@ -7,6 +7,8 @@
         <tr>
           <th>Title</th>
           <th>Description</th>
+          <th>Category</th>
+          <th>Alcohol Level</th>
           <th></th>
         </tr>
 
@@ -14,6 +16,8 @@
           <tr>
             <td><%= drink.title %></td>
             <td><%= truncate(drink.description, length: 30) %></td>
+            <td><%= drink.category %></td>
+            <td><%= drink.alcohol_level %></td>
             <td>
               <%= link_to 'Delete',
                 '/drinks/' + drink.to_param,

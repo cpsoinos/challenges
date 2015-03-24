@@ -23,7 +23,7 @@
       <%= f.check_box :featured %>
       <br>
       <%= f.label :category %>
-      <%= f.select :category, Category.all.collect { |c| [c.name] } %>
+      <%= f.select :category, Category.all.map { |c| [c.name, c.id] } %>
       <br>
       <%= f.label :alcohol_level %>
       <%= f.radio_button(:alcohol_level, "Low", id: "Low") %>
