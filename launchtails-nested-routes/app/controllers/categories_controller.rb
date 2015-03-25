@@ -6,8 +6,4 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:category_id])
   end
-
-  def self.drink
-    @drink = Drink.where(category_id: params[:id])
-  end
 end

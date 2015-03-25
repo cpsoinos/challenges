@@ -16,7 +16,7 @@
           <tr>
             <td><%= drink.title %></td>
             <td><%= truncate(drink.description, length: 30) %></td>
-            <td><%= drink.category %></td>
+            <td><%= drink.category.name %></td>
             <td><%= drink.alcohol_level %></td>
             <td>
               <%= link_to 'Delete',
