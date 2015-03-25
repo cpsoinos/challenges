@@ -1,9 +1,10 @@
 <h1>Questions</h1>
+
 <% if !@questions.empty? %>
   <table>
     <tr>
       <th>Title</th>
-      <th>Created at</th>
+      <th>Created</th>
       <th></th>
     </tr>
 
@@ -14,11 +15,9 @@
       </tr>
     <% end %>
   </table>
-
 <% end %>
-
 <br>
 
 <% if user_signed_in? %>
-  <%= link_to 'Post a new question', new_question_path %>
+<%= link_to 'Post a Question', new_question_path %>
 <% end %>

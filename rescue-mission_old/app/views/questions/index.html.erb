@@ -1,0 +1,24 @@
+<h1>Questions</h1>
+<% if !@questions.empty? %>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Created at</th>
+      <th></th>
+    </tr>
+
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.title, question_path(question) %></td>
+        <td><%= question.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>
+
+<br>
+
+<% if user_signed_in? %>
+  <%= link_to 'Post a new question', new_question_path %>
+<% end %>

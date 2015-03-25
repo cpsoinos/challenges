@@ -5,6 +5,10 @@ class Answer < ActiveRecord::Base
   validates :description,
     presence: true,
     length: { minimum: 50 }
+
+  validates :question_id,
+  presence: true
+
   validates :user_id,
     presence: true
 end

@@ -1,18 +1,4 @@
 class QuestionsController < ApplicationController
-  def new
-    @question = Question.new
-  end
-
-  def create
-    @question = Question.create(question_params)
-    if @question.save
-      flash[:notice] = "Question added."
-      redirect_to questions_path
-    else
-      flash[:notice] = "Invalid entry."
-      redirect_to :back
-    end
-  end
 
   def index
     @questions = Question.all
@@ -22,10 +8,24 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
+  def new
+    @question = current_user.questions.new
+  end
+
+  def create
+    @question = Question.create(question_params)
+    if @question.save
+      flash[:notice] = "Question added"
+      redirect_to questions_path
+    else
+      flash[:notice] = "Invalid entry"
+      redirect_to :back
+    end
+  end
+
   protected
   def question_params
-    @question_params = params.require(:question).permit(:title, :description)
-    @question_params[:user_id] = session[:user_id]
+    params.require(:question).permit(:title, :description, :user_id)
   end
 
 end
