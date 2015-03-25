@@ -9,35 +9,35 @@ feature 'answer question', %Q{
 
   let!(:user) { FactoryGirl.create(:user) }
   let!(:question) { FactoryGirl.create(:question) }
+  let!(:answer) { FactoryGirl.create(:answer) }
   before :each do
      sign_in user
    end
 
-   def create_answer(description)
-    visit question_path(question)
-    fill_in('Description', with: description)
-    click_button('Create Answer')
-   end
-
-  scenario "visitor posts answer from the question detail page" do
+  scenario 'user views question page' do
     visit question_path(question)
 
+    expect(page).to have_content('Answer this question')
     expect(page).to have_button('Create Answer')
-    expect(page).to contain('Description')
   end
 
-  scenario "visitor must provide a description that >50 characters" do
+  scenario 'user posts answer from the question detail page' do
+    visit question_path(question)
+    save_and_open_page
+    fill_in('answer_description', with: answer.description)
+    click_button('Create Answer')
 
-
+    expect(page).to have_content(answer.description)
   end
 
-  scenario "visitor receives errors for invalid input" do
-    answer_description = "Really way too short"
-    create_answer(answer_description)
-    expect(page).to have_content("Invalid entry")
+  scenario 'user\'s answer is too short' do
+    visit question_path(question)
+    fill_in('answer_description', with: 'too short of an answer')
+    click_button('Create Answer')
+
+    expect(page).to have_content('Answer must be more than 50 characters!')
   end
 end
-
 
 def sign_in(user)
   visit new_user_session_path

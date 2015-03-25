@@ -4,7 +4,6 @@ feature 'post a question', %Q{
   As a user
   I want to post a question
   So that I can receive help from others
-
 } do
 
   let(:user) { FactoryGirl.create(:user) }
