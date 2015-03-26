@@ -23,7 +23,6 @@ feature 'answer question', %Q{
 
   scenario 'user posts answer from the question detail page' do
     visit question_path(question)
-    save_and_open_page
     fill_in('answer_description', with: answer.description)
     click_button('Create Answer')
 

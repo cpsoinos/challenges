@@ -1,6 +1,11 @@
 <h2><%= @question.title %></h2>
 <p> <%= @question.description %> </p>
 
+<% if user_signed_in? %>
+  <%= button_to "Edit Question", edit_question_path(@question), :class => "button", :method => :get  %>
+  <%= button_to "Delete Question", question_path(@question), :class => "button", :method => :delete  %>
+<% end %>
+
 <h2>Answers:</h2>
 
 <ul>

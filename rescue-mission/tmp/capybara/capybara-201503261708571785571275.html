@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RescueMission</title>
+  <link rel="stylesheet" media="screen" href="/assets/normalize.css" />
+  <link rel="stylesheet" media="screen" href="/assets/foundation.css" />
+  <link rel="stylesheet" media="all" href="/assets/application.css" />
+  <script src="/assets/application.js"></script>
+  <script src="/javascripts/defaults.js"></script>
+  
+</head>
+<body>
+
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/questions">Home</a></h1>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="right">
+          <li><a href="/users/sign_up">Sign Up</a></li>
+          <li class="active"><a href="/users/sign_in">Sign In</a></li>
+          <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a></li>
+      </ul>
+    </section>
+  </nav>
+
+  <p class="notice"></p>
+  <p class="alert"></p>
+  
+  <div class="row">
+    <h1>Edit a Question</h1>
+
+<form class="button_to" method="get" action="/questions/474/edit"><input class="button" type="submit" value="Delete Question" /></form>
+
+<div class="field">
+  <form class="edit_question" id="edit_question_474" action="/questions/474" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="patch" />
+    <label for="question_title">Title</label>
+    <input type="text" value="This is question numero 17! I don&#39;t know the answer." name="question[title]" id="question_title" />
+    <label for="question_description">Description</label>
+    <input type="text" value="Aaaand this is the Question. Because, you just, you know, do the thing. And make sure that your answer is long enough! Because it was too short when I ran it last time." name="question[description]" id="question_description" />
+  </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Update Question" />
+  </div>
+</form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RescueMission</title>
+  <link rel="stylesheet" media="screen" href="/assets/normalize.css" />
+  <link rel="stylesheet" media="screen" href="/assets/foundation.css" />
+  <link rel="stylesheet" media="all" href="/assets/application.css" />
+  <script src="/assets/application.js"></script>
+  <script src="/javascripts/defaults.js"></script>
+  
+</head>
+<body>
+
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/questions">Home</a></h1>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="right">
+          <li><a href="/users/sign_up">Sign Up</a></li>
+          <li class="active"><a href="/users/sign_in">Sign In</a></li>
+          <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a></li>
+      </ul>
+    </section>
+  </nav>
+
+  <p class="notice"></p>
+  <p class="alert"></p>
+  
+  <div class="row">
+    <h2>This is question numero 3! I don&#39;t know the answer.</h2>
+<p> Aaaand this is the Question. Because, you just, you know, do the thing. And make sure that your answer is long enough! Because it was too short when I ran it last time. </p>
+
+<h2>Answers:</h2>
+
+<ul>
+</ul>
+
+  <form class="new_answer" id="new_answer" action="/questions/112/answers" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+    <div class="field">
+      <label for="answer_answer_this_question">Answer this question</label>
+      <input type="text" name="answer[description]" id="answer_description" />
+    </div>
+    <div class="actions">
+      <input type="submit" name="commit" value="Create Answer" />
+    </div>
+</form>
+  </div>
+
+</body>
+</html>
