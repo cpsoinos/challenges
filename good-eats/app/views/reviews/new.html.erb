@@ -1,0 +1,14 @@
+<% binding.pry %>
+<h1> You are reviewing <%= @restaurant.name %> </h1>
+
+<%= form_for [@restaurant, @review] do |f| %>
+  <%= f.label :rating %>:
+  <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+  <br />
+
+  <%= f.label :body %>:
+  <%= f.text_field :body %>
+  <br />
+
+  <%= f.submit %>
+<% end %>

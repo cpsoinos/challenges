@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+li {
+  list-style: none;
+}
+
+.timestamp {
+  font-style: italic;
+  text-align: right
+}
+
+.details {
+  font-weight: bold;
+}
+
+.rating {
+  font-weight: bold;
+  color: gold;
+}
