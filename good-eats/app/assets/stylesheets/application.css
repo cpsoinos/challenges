@@ -12,7 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+body {
+  background: asset_path('swirl_pattern.png');
+}
 
 li {
   list-style: none;

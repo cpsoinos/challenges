@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
-    # binding.pry
     @review = @restaurant.reviews.new
   end
 
