@@ -11,8 +11,8 @@ feature 'answer question', %Q{
   let!(:question) { FactoryGirl.create(:question) }
   let!(:answer) { FactoryGirl.create(:answer) }
   before :each do
-     sign_in user
-   end
+    sign_in user
+  end
 
   scenario 'user views question page' do
     visit question_path(question)
