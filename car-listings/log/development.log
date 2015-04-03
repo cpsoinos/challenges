@@ -1,0 +1,2265 @@
+  [1m[36m (34.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (9.9ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (3.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20150403134006)
+  [1m[35m (0.5ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/cpsoinos/challenges/car-listings/db/migrate/20150403134006_devise_create_users.rb:34)
+  [1m[36m (32.8ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (9.8ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (8.5ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403134006"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateManufacturers (20150403140424)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (29.3ms)[0m  [1mCREATE TABLE "manufacturers" ("id" serial primary key, "name" character varying NOT NULL, "country" character varying NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403140424"]]
+  [1m[36m (2.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (5.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateManufacturers (20150403140424)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (8.1ms)[0m  DROP TABLE "manufacturers"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20150403140424"]]
+  [1m[35m (10.7ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (6.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (3.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateManufacturers (20150403140424)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (28.3ms)[0m  [1mCREATE TABLE "manufacturers" ("id" serial primary key, "name" character varying NOT NULL, "country" character varying NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403140424"]]
+  [1m[36m (1.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (5.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/" for ::1 at 2015-04-03 10:12:23 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (uninitialized constant ManufacturersController):
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (36.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (16.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (273.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (121.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (273.5ms)
+
+
+Started GET "/" for ::1 at 2015-04-03 10:15:18 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+LoadError (Unable to autoload constant ManufacturersController, expected /Users/cpsoinos/challenges/car-listings/app/controllers/manufacturers_controller.rb to define it):
+  activesupport (4.2.1) lib/active_support/dependencies.rb:495:in `load_missing_constant'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:184:in `const_missing'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `constantize'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:566:in `get'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:597:in `constantize'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (15.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (92.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (54.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (128.1ms)
+
+
+Started GET "/" for ::1 at 2015-04-03 10:17:30 -0400
+
+LoadError (Unable to autoload constant ManufacturersController, expected /Users/cpsoinos/challenges/car-listings/app/controllers/manufacturers_controller.rb to define it):
+  activesupport (4.2.1) lib/active_support/dependencies.rb:495:in `load_missing_constant'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:184:in `const_missing'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `constantize'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:566:in `get'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:597:in `constantize'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (57.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (51.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (111.6ms)
+
+
+Started GET "/" for ::1 at 2015-04-03 10:18:39 -0400
+Processing by ManufacturersController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant ManufacturersController::Manufacturers):
+  app/controllers/manufacturers_controller.rb:4:in `index'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (56.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (117.9ms)
+
+
+Started GET "/" for ::1 at 2015-04-03 10:19:13 -0400
+Processing by ManufacturersController#index as HTML
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+LoadError (Unable to autoload constant Manufacturer, expected /Users/cpsoinos/challenges/car-listings/app/models/manufacturer.rb to define it):
+  app/controllers/manufacturers_controller.rb:4:in `index'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (62.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (116.0ms)
+
+
+Started GET "/" for ::1 at 2015-04-03 10:19:38 -0400
+Processing by ManufacturersController#index as HTML
+  Rendered manufacturers/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 7713ms (Views: 7702.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:19:46 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:19:47 -0400
+
+
+Started GET "/" for ::1 at 2015-04-03 10:20:08 -0400
+Processing by ManufacturersController#index as HTML
+  Rendered manufacturers/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 96ms (Views: 95.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:20:08 -0400
+
+
+Started GET "/" for ::1 at 2015-04-03 10:20:11 -0400
+Processing by ManufacturersController#index as HTML
+  Rendered manufacturers/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 231ms (Views: 230.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:20:11 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-04-03 10:23:26 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 110ms (Views: 90.4ms | ActiveRecord: 12.0ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:23:26 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:23:27 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-04-03 10:25:06 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (57.0ms)
+Completed 200 OK in 148ms (Views: 147.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:25:07 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-04-03 10:25:36 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 99ms (Views: 99.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:25:36 -0400
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:37:11 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RyuHKDNR6xfeJPTOYk4HWyQh9wYdvINRYb+nwkx3oWKDkInp3aAFFrvflOtPrlwlIZYPWKQ7rQEZsUDnqdVwQg==", "manufacturer"=>{"name"=>"Hyundai", "country"=>"South Korea"}, "commit"=>"Create Manufacturer"}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (4.0ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Hyundai' LIMIT 1[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"  [["name", "Hyundai"], ["country", "South Korea"]]
+  [1m[36m (1.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 57ms (ActiveRecord: 11.3ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-04-03 10:37:12 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (1.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers"  ORDER BY name ASC LIMIT 25 OFFSET 0
+  Rendered manufacturers/index.html.erb within layouts/application (21.5ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `manufacturer_path' for #<#<Class:0x007f9f5c8b7a38>:0x007f9f5c8b7038>):
+    4: 
+    5: <ul>
+    6:   <% @manufacturers.each do |manufacturer| %>
+    7:     <li><%= link_to manufacturer.name, manufacturer_path(manufacturer) %></li>
+    8:   <% end %>
+    9: </ul>
+  app/views/manufacturers/index.html.erb:7:in `block in _app_views_manufacturers_index_html_erb__884382594129073656_70161214582540'
+  app/views/manufacturers/index.html.erb:6:in `_app_views_manufacturers_index_html_erb__884382594129073656_70161214582540'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (77.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (80.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (161.1ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-04-03 10:40:00 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 140ms (Views: 129.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:40:00 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:40:01 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:40:01 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:40:01 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:40:01 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:40:01 -0400
+
+
+Started GET "/" for ::1 at 2015-04-03 10:40:15 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers"  ORDER BY name ASC LIMIT 25 OFFSET 0[0m
+  Rendered manufacturers/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 107ms (Views: 105.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:40:16 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-04-03 10:40:17 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 93ms (Views: 92.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:40:18 -0400
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:40:23 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rslDEiIfqOmEC6ny778ywdKRVyThTQqRrrX9hBdE4cpqck3TzO5G6OHwydfCX2m/1yaveljKJMHWuxqh8uYw6g==", "manufacturer"=>{"name"=>"Toyota", "country"=>"Japan"}, "commit"=>"Create Manufacturer"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Toyota' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"  [["name", "Toyota"], ["country", "Japan"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 6ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-04-03 10:40:23 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.6ms)[0m  SELECT  "manufacturers".* FROM "manufacturers"  ORDER BY name ASC LIMIT 25 OFFSET 0
+  Rendered manufacturers/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 142ms (Views: 141.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:40:24 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-04-03 10:40:29 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 133ms (Views: 132.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:40:30 -0400
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:40:33 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EsR21zPiYPREItS0Mcr5em7mStps/fjSwKgn6HLqTAnWf3gW3ROO9SHZtJEcKqIEa1GyhNV61oK4psDNl0idKQ==", "manufacturer"=>{"name"=>"Chevy", "country"=>""}, "commit"=>"Create Manufacturer"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.5ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Chevy' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.0ms)
+
+ActionView::MissingTemplate (Missing template manufacturers/create, application/create with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/cpsoinos/challenges/car-listings/app/views"
+  * "/Users/cpsoinos/.gem/ruby/2.2.0/gems/kaminari-0.16.3/app/views"
+  * "/Users/cpsoinos/.gem/ruby/2.2.0/gems/foundation-rails-5.5.1.1/app/views"
+  * "/Users/cpsoinos/.gem/ruby/2.2.0/gems/devise-3.4.1/app/views"
+):
+  actionview (4.2.1) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.1) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (69.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (58.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (128.9ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:41:04 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EsR21zPiYPREItS0Mcr5em7mStps/fjSwKgn6HLqTAnWf3gW3ROO9SHZtJEcKqIEa1GyhNV61oK4psDNl0idKQ==", "manufacturer"=>{"name"=>"Chevy", "country"=>""}, "commit"=>"Create Manufacturer"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Chevy' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  Rendered manufacturers/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 120ms (Views: 104.3ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:41:05 -0400
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:41:27 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SOKIVjAQ2yYBTSTUWCps5g4eIGOqaIKtAcj3OiWFt9KMWYaX3uE1J2S2RPF1yjeYC6nYPRPvrP15xhAfwCdm8g==", "manufacturer"=>{"name"=>"Chevy", "country"=>""}, "commit"=>"Create Manufacturer"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.5ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Chevy' LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  Rendered manufacturers/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 127ms (Views: 122.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:41:28 -0400
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:42:04 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SOKIVjAQ2yYBTSTUWCps5g4eIGOqaIKtAcj3OiWFt9KMWYaX3uE1J2S2RPF1yjeYC6nYPRPvrP15xhAfwCdm8g==", "manufacturer"=>{"name"=>"Chevy", "country"=>""}, "commit"=>"Create Manufacturer"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Chevy' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  Rendered manufacturers/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 134ms (Views: 130.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:42:05 -0400
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:42:11 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qMmAXxcQmrAXRt76SfB1yM504U+YJIUeuNMavIHhMBlsco6e+eF0sXK9vt9kEC62y8MZESGjq07A3f2ZZEPhOQ==", "manufacturer"=>{"name"=>"Chevrolet", "country"=>"USA"}, "commit"=>"Create Manufacturer"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.4ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Chevrolet' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Chevrolet"], ["country", "USA"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 5ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-04-03 10:42:11 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.6ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers"  ORDER BY name ASC LIMIT 25 OFFSET 0[0m
+  Rendered manufacturers/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 110ms (Views: 108.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:42:11 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-04-03 10:42:13 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 109ms (Views: 108.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:42:14 -0400
+
+
+Started POST "/manufacturers" for ::1 at 2015-04-03 10:42:17 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BQEvFT74hlfm58eCZYNvQHtyr5q1MV95aIDV+weuiWzBuiHU0AloVoMcp6dIYzQ+fsVXxAy2cSkQjjLe4gxYTA==", "manufacturer"=>{"name"=>"", "country"=>"Germany"}, "commit"=>"Create Manufacturer"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = '' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  Rendered manufacturers/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 109ms (Views: 104.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:42:17 -0400
+
+
+Started GET "/" for ::1 at 2015-04-03 10:48:30 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers"  ORDER BY name ASC LIMIT 25 OFFSET 0[0m
+  Rendered manufacturers/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 117ms (Views: 106.9ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:48:31 -0400
+
+
+Started GET "/manufacturers/3" for ::1 at 2015-04-03 10:48:33 -0400
+Processing by ManufacturersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered manufacturers/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 146ms (Views: 121.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:48:34 -0400
+
+
+Started GET "/manufacturers/1" for ::1 at 2015-04-03 10:48:36 -0400
+Processing by ManufacturersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered manufacturers/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 106ms (Views: 104.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:48:37 -0400
+
+
+Started GET "/" for ::1 at 2015-04-03 10:48:49 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT  "manufacturers".* FROM "manufacturers"  ORDER BY name ASC LIMIT 25 OFFSET 0
+  Rendered manufacturers/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 126ms (Views: 124.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:48:49 -0400
+
+
+Started GET "/manufacturers/1" for ::1 at 2015-04-03 10:48:51 -0400
+Processing by ManufacturersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered manufacturers/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 103ms (Views: 102.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400

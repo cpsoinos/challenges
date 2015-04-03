@@ -1,0 +1,9 @@
+<h1>Manufacturers</h1>
+
+<%= link_to "Add a new manufacturer", new_manufacturer_path %>
+
+<ul>
+  <% @manufacturers.each do |manufacturer| %>
+    <li><%= link_to manufacturer.name, manufacturer_path(manufacturer) %></li>
+  <% end %>
+</ul>
