@@ -2263,3 +2263,2699 @@ Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for 
 
 
 Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 10:48:51 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCars (20150403151459)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (38.8ms)[0m  [1mCREATE TABLE "cars" ("id" serial primary key, "model" character varying, "color" character varying, "year" integer, "mileage" integer, "description" text, "manufacturer_id" integer) [0m
+  [1m[35m (8.0ms)[0m  CREATE  INDEX  "index_cars_on_manufacturer_id" ON "cars"  ("manufacturer_id")
+  [1m[36m (26.4ms)[0m  [1mALTER TABLE "cars" ADD CONSTRAINT "fk_rails_2b99762df5"
+FOREIGN KEY ("manufacturer_id")
+  REFERENCES "manufacturers" ("id")
+[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403151459"]]
+  [1m[36m (2.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (8.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (7.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCars (20150403151459)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (5.1ms)[0m  DROP TABLE "cars"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20150403151459"]]
+  [1m[35m (12.1ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (8.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (14.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCars (20150403151459)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (33.2ms)[0m  [1mCREATE TABLE "cars" ("id" serial primary key, "model" character varying, "color" character varying, "year" integer, "mileage" integer, "description" text, "manufacturer_id" integer) [0m
+  [1m[35m (7.7ms)[0m  CREATE  INDEX  "index_cars_on_manufacturer_id" ON "cars"  ("manufacturer_id")
+  [1m[36m (21.5ms)[0m  [1mALTER TABLE "cars" ADD CONSTRAINT "fk_rails_2b99762df5"
+FOREIGN KEY ("manufacturer_id")
+  REFERENCES "manufacturers" ("id")
+[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403151459"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (22.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (7.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (5.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCars (20150403151459)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (3.1ms)[0m  DROP TABLE "cars"
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20150403151459"]]
+  [1m[35m (18.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (6.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (5.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCars (20150403151459)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (33.0ms)[0m  [1mCREATE TABLE "cars" ("id" serial primary key, "model" character varying NOT NULL, "color" character varying NOT NULL, "year" integer NOT NULL, "mileage" integer NOT NULL, "description" text, "manufacturer_id" integer) [0m
+  [1m[35m (9.3ms)[0m  CREATE  INDEX  "index_cars_on_manufacturer_id" ON "cars"  ("manufacturer_id")
+  [1m[36m (8.3ms)[0m  [1mALTER TABLE "cars" ADD CONSTRAINT "fk_rails_2b99762df5"
+FOREIGN KEY ("manufacturer_id")
+  REFERENCES "manufacturers" ("id")
+[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403151459"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (6.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCars (20150403151459)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.6ms)[0m  DROP TABLE "cars"
+  [1m[36mSQL (0.6ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20150403151459"]]
+  [1m[35m (15.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (13.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (10.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCars (20150403151459)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (30.0ms)[0m  [1mCREATE TABLE "cars" ("id" serial primary key, "model" character varying NOT NULL, "color" character varying NOT NULL, "year" integer NOT NULL, "mileage" integer NOT NULL, "description" text, "manufacturer_id" integer) [0m
+  [1m[35m (9.6ms)[0m  CREATE  INDEX  "index_cars_on_manufacturer_id" ON "cars"  ("manufacturer_id")
+  [1m[36m (9.9ms)[0m  [1mALTER TABLE "cars" ADD CONSTRAINT "fk_rails_2b99762df5"
+FOREIGN KEY ("manufacturer_id")
+  REFERENCES "manufacturers" ("id")
+[0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403151459"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (31.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (10.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCars (20150403151459)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.7ms)[0m  DROP TABLE "cars"
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20150403151459"]]
+  [1m[35m (13.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (6.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (6.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCars (20150403151459)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (36.3ms)[0m  [1mCREATE TABLE "cars" ("id" serial primary key, "model" character varying NOT NULL, "color" character varying NOT NULL, "year" integer NOT NULL, "mileage" integer NOT NULL, "description" text, "manufacturer_id" integer NOT NULL) [0m
+  [1m[35m (8.7ms)[0m  CREATE  INDEX  "index_cars_on_manufacturer_id" ON "cars"  ("manufacturer_id")
+  [1m[36m (8.2ms)[0m  [1mALTER TABLE "cars" ADD CONSTRAINT "fk_rails_2b99762df5"
+FOREIGN KEY ("manufacturer_id")
+  REFERENCES "manufacturers" ("id")
+[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150403151459"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (9.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (5.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started GET "/categories" for ::1 at 2015-04-03 11:29:14 -0400
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+ActionController::RoutingError (No route matches [GET] "/categories"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (6.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (106.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (68.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (162.7ms)
+
+
+Started GET "/cars" for ::1 at 2015-04-03 11:29:14 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (8.3ms)[0m  [1mSELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFFSET 0[0m
+PG::UndefinedColumn: ERROR:  column "name" does not exist
+LINE 1: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFF...
+                                               ^
+: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFFSET 0
+  Rendered cars/index.html.erb within layouts/application (16.1ms)
+Completed 500 Internal Server Error in 63ms (ActiveRecord: 8.3ms)
+
+ActionView::Template::Error (PG::UndefinedColumn: ERROR:  column "name" does not exist
+LINE 1: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFF...
+                                               ^
+: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFFSET 0):
+    3: <%= link_to "Add a new car", new_car_path %>
+    4: 
+    5: <ul>
+    6:   <% @cars.each do |car| %>
+    7:     <li><%= link_to car.name, car_path(car) %></li>
+    8:   <% end %>
+    9: </ul>
+  app/views/cars/index.html.erb:6:in `_app_views_cars_index_html_erb__2587554927965796863_70161208455160'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (104.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (70.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (166.8ms)
+
+
+Started GET "/cars" for ::1 at 2015-04-03 11:33:18 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (5.6ms)[0m  SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFFSET 0
+PG::UndefinedColumn: ERROR:  column "name" does not exist
+LINE 1: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFF...
+                                               ^
+: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFFSET 0
+  Rendered cars/index.html.erb within layouts/application (12.6ms)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 5.6ms)
+
+ActionView::Template::Error (PG::UndefinedColumn: ERROR:  column "name" does not exist
+LINE 1: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFF...
+                                               ^
+: SELECT  "cars".* FROM "cars"  ORDER BY name ASC LIMIT 25 OFFSET 0):
+    10:     <th>Color</th>
+    11:     <th>Mileage</th>
+    12:   </tr>
+    13:   <% @cars.each do |car| %>
+    14:     <tr>
+    15:       <td><%= car.manufacturer %></td>
+    16:       <td><%= car.model %></td>
+  app/views/cars/index.html.erb:13:in `_app_views_cars_index_html_erb__2587554927965796863_70161145062080'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (69.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (57.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (130.1ms)
+
+
+Started GET "/cars" for ::1 at 2015-04-03 11:33:48 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (4.6ms)[0m  [1mSELECT  "cars".* FROM "cars"  ORDER BY year DESC LIMIT 25 OFFSET 0[0m
+  Rendered cars/index.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 132ms (Views: 114.8ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:33:49 -0400
+
+
+Started GET "/cars" for ::1 at 2015-04-03 11:34:57 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.5ms)[0m  SELECT  "cars".* FROM "cars"  ORDER BY year DESC LIMIT 25 OFFSET 0
+  Rendered cars/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 106ms (Views: 104.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:34:58 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:50:02 -0400
+Processing by CarsController#new as HTML
+  Rendered cars/new.html.erb within layouts/application (12.2ms)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 2.8ms)
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    19:   <p>
+    20:     <%= f.label :manufacturer %><br>
+    21:     <%= f.select(:manufacturer_id) do %>
+    22:       <% @manufacturers.each do |manufacturer| %>
+    23:         <%= content_tag(:option, manufacturer.name, value: manufacturer_id) %>
+    24:       <% end %>
+    25:     <% end %>
+  app/views/cars/new.html.erb:22:in `block (2 levels) in _app_views_cars_new_html_erb___4187628543732486335_70161221142820'
+  app/views/cars/new.html.erb:21:in `block in _app_views_cars_new_html_erb___4187628543732486335_70161221142820'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb___4187628543732486335_70161221142820'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (68.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (62.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (132.5ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:50:44 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (1.7ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (24.6ms)
+Completed 500 Internal Server Error in 65ms (ActiveRecord: 6.1ms)
+
+ActionView::Template::Error (undefined local variable or method `manufacturer_id' for #<#<Class:0x007f9f5a840e30>:0x007f9f5a840278>):
+    20:     <%= f.label :manufacturer %><br>
+    21:     <%= f.select(:manufacturer_id) do %>
+    22:       <% @manufacturers.each do |manufacturer| %>
+    23:         <%= content_tag(:option, manufacturer.name, value: manufacturer_id) %>
+    24:       <% end %>
+    25:     <% end %>
+    26:   </p>
+  app/views/cars/new.html.erb:23:in `block (3 levels) in _app_views_cars_new_html_erb___4187628543732486335_70161221142820'
+  app/views/cars/new.html.erb:22:in `block (2 levels) in _app_views_cars_new_html_erb___4187628543732486335_70161221142820'
+  app/views/cars/new.html.erb:21:in `block in _app_views_cars_new_html_erb___4187628543732486335_70161221142820'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb___4187628543732486335_70161221142820'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (65.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (116.6ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:51:57 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.6ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 27ms (ActiveRecord: 6.8ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Manufacturer with 'id'=):
+  app/controllers/cars_controller.rb:10:in `new'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (62.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (55.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (119.5ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:52:18 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Manufacturer with 'id'=):
+  app/controllers/cars_controller.rb:10:in `new'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (58.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (56.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (126.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:53:03 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 27ms (ActiveRecord: 5.3ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Manufacturer with 'id'=):
+  app/controllers/cars_controller.rb:10:in `new'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (59.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (53.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (116.3ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:53:18 -0400
+Processing by CarsController#new as HTML
+  Rendered cars/new.html.erb within layouts/application (7.5ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 2.5ms)
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    19:   <p>
+    20:     <%= f.label :manufacturer %><br>
+    21:     <%= f.select(:manufacturer_id) do %>
+    22:       <% @manufacturers.each do |manufacturer| %>
+    23:         <%= content_tag(:option, manufacturer.name, value: manufacturer_id) %>
+    24:       <% end %>
+    25:     <% end %>
+  app/views/cars/new.html.erb:22:in `block (2 levels) in _app_views_cars_new_html_erb___4187628543732486335_70161216816300'
+  app/views/cars/new.html.erb:21:in `block in _app_views_cars_new_html_erb___4187628543732486335_70161216816300'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb___4187628543732486335_70161216816300'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (70.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (61.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (126.7ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:53:35 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (25.1ms)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 5.1ms)
+
+ActionView::Template::Error (undefined local variable or method `manufacturer_id' for #<#<Class:0x007f9f53342ea8>:0x007f9f533424a8>):
+    20:     <%= f.label :manufacturer %><br>
+    21:     <%= f.select(:manufacturer_id) do %>
+    22:       <% @manufacturers.each do |manufacturer| %>
+    23:         <%= content_tag(:option, manufacturer.name, value: manufacturer_id) %>
+    24:       <% end %>
+    25:     <% end %>
+    26:   </p>
+  app/views/cars/new.html.erb:23:in `block (3 levels) in _app_views_cars_new_html_erb___4187628543732486335_70161216816300'
+  app/views/cars/new.html.erb:22:in `block (2 levels) in _app_views_cars_new_html_erb___4187628543732486335_70161216816300'
+  app/views/cars/new.html.erb:21:in `block in _app_views_cars_new_html_erb___4187628543732486335_70161216816300'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb___4187628543732486335_70161216816300'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (70.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (117.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:53:49 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 142ms (Views: 141.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:53:50 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:55:02 -0400
+Processing by CarsController#new as HTML
+  Rendered cars/new.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:23: syntax error, unexpected ',', expecting ')'
+....name, value: manufacturer.id), :include_blank );@output_buf...
+...                               ^):
+  app/views/cars/new.html.erb:23: syntax error, unexpected ',', expecting ')'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (117.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:55:17 -0400
+Processing by CarsController#new as HTML
+  Rendered cars/new.html.erb within layouts/application (1.6ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:23: syntax error, unexpected ')', expecting =>
+...anufacturer.id, :include_blank) );@output_buffer.safe_append...
+...                               ^
+/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;       end 
+                   ^
+/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:56: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:58: syntax error, unexpected keyword_ensure, expecting ')'
+/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:60: syntax error, unexpected keyword_end, expecting ')'):
+  app/views/cars/new.html.erb:23: syntax error, unexpected ')', expecting =>
+  app/views/cars/new.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+  app/views/cars/new.html.erb:56: syntax error, unexpected keyword_end, expecting ')'
+  app/views/cars/new.html.erb:58: syntax error, unexpected keyword_ensure, expecting ')'
+  app/views/cars/new.html.erb:60: syntax error, unexpected keyword_end, expecting ')'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (66.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (67.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (135.8ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:55:54 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 127ms (Views: 126.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:55:55 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:55:58 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 137ms (Views: 135.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:55:58 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:55:59 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:55:59 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:55:59 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:55:59 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:55:59 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:55:59 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:55:59 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:56:42 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 120ms (Views: 119.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:56:42 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:56:47 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (2.0ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 111ms (Views: 108.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:56:47 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:56:47 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:56:47 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:56:47 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:56:47 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:56:47 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:56:47 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:56:48 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 11:57:17 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 122ms (Views: 121.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 11:57:18 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:14:13 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.6ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (15.8ms)
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 7.9ms)
+
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    32: 
+    33:   <p>
+    34:     <%= f.label :year %><br>
+    35:     <%= f.select :state, options_for_select(@years) %>
+    36:   </p>
+    37: 
+    38:   <p>
+  app/views/cars/new.html.erb:35:in `block in _app_views_cars_new_html_erb___4187628543732486335_70161142342140'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb___4187628543732486335_70161142342140'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (79.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (58.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (149.6ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:15:18 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (8.7ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (undefined method `state' for #<Car:0x007f9f5c808240>):
+    32: 
+    33:   <p>
+    34:     <%= f.label :year %><br>
+    35:     <%= f.select :state, [1920..2025] %>
+    36:   </p>
+    37: 
+    38:   <p>
+  app/views/cars/new.html.erb:35:in `block in _app_views_cars_new_html_erb___4187628543732486335_70161208676900'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb___4187628543732486335_70161208676900'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (64.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (51.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (112.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:16:48 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (21.8ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.5ms)
+
+ActionView::Template::Error (undefined method `select_year' for #<ActionView::Helpers::FormBuilder:0x007f9f5a721540>):
+    32: 
+    33:   <p>
+    34:     <%= f.label :year %><br>
+    35:     <%= f.select_year(2015, start_year: 1920, end_year: 2025) %>
+    36:   </p>
+    37: 
+    38:   <p>
+  app/views/cars/new.html.erb:35:in `block in _app_views_cars_new_html_erb___4187628543732486335_70161210445820'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb___4187628543732486335_70161210445820'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (112.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (64.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (138.5ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:17:55 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 188ms (Views: 187.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:17:56 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:18:32 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 130ms (Views: 129.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:18:33 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:21:29 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (2.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (404.7ms)
+Completed 200 OK in 919ms (Views: 863.1ms | ActiveRecord: 17.9ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:21:30 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:21:31 -0400
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:21:51 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xjrBt+kMwZPi8cphjnFX9FrepspzEyMQ94KAlErwxkYCgc92B/0vkocKqkSjkQyKX2lelMqUDUCPjGexr1IXZg==", "car"=>{"manufacturer_id"=>"1", "model"=>"Veloster", "year"=>"2012", "color"=>"Red", "mileage"=>"35000", "description"=>"Cool car"}, "commit"=>"Create Car"}
+Unpermitted parameter: manufacturer_id
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  [1m[35mManufacturer Load (0.8ms)[0m  SELECT  "manufacturers".* FROM "manufacturers"  ORDER BY "manufacturers"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers"  ORDER BY "manufacturers"."id" ASC LIMIT 1[0m
+  [1m[35mCar Load (3.6ms)[0m  SELECT "cars".* FROM "cars" WHERE "cars"."manufacturer_id" = $1  [["manufacturer_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers"  ORDER BY "manufacturers"."id" ASC LIMIT 1[0m
+Unpermitted parameter: manufacturer_id
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 229264ms (ActiveRecord: 5.7ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Manufacturer with 'id'=):
+  app/controllers/cars_controller.rb:14:in `create'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (65.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (61.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (139.8ms)
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:25:45 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xjrBt+kMwZPi8cphjnFX9FrepspzEyMQ94KAlErwxkYCgc92B/0vkocKqkSjkQyKX2lelMqUDUCPjGexr1IXZg==", "car"=>{"manufacturer_id"=>"1", "model"=>"Veloster", "year"=>"2012", "color"=>"Red", "mileage"=>"35000", "description"=>"Cool car"}, "commit"=>"Create Car"}
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers"  ORDER BY "manufacturers"."id" ASC LIMIT 1[0m
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 15767ms (ActiveRecord: 5.4ms)
+
+ActionView::MissingTemplate (Missing template cars/create, application/create with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/cpsoinos/challenges/car-listings/app/views"
+  * "/Users/cpsoinos/.gem/ruby/2.2.0/gems/kaminari-0.16.3/app/views"
+  * "/Users/cpsoinos/.gem/ruby/2.2.0/gems/foundation-rails-5.5.1.1/app/views"
+  * "/Users/cpsoinos/.gem/ruby/2.2.0/gems/devise-3.4.1/app/views"
+):
+  actionview (4.2.1) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.1) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/cpsoinos/.rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (59.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (55.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (122.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:28:38 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xjrBt+kMwZPi8cphjnFX9FrepspzEyMQ94KAlErwxkYCgc92B/0vkocKqkSjkQyKX2lelMqUDUCPjGexr1IXZg==", "car"=>{"manufacturer_id"=>"1", "model"=>"Veloster", "year"=>"2012", "color"=>"Red", "mileage"=>"35000", "description"=>"Cool car"}, "commit"=>"Create Car"}
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (4.1ms)[0m  [1mINSERT INTO "cars" ("model", "color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["model", "Veloster"], ["color", "Red"], ["year", 2012], ["mileage", 35000], ["description", "Cool car"], ["manufacturer_id", 1]]
+  [1m[35m (1.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 41ms (ActiveRecord: 10.9ms)
+
+
+Started GET "/cars" for ::1 at 2015-04-03 12:28:38 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.7ms)[0m  [1mSELECT  "cars".* FROM "cars"  ORDER BY year DESC LIMIT 25 OFFSET 0[0m
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 155ms (Views: 153.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:28:38 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:28:39 -0400
+
+
+Started GET "/manufacturers/1" for ::1 at 2015-04-03 12:28:43 -0400
+Processing by ManufacturersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mManufacturer Load (1.5ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered manufacturers/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 135ms (Views: 130.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:28:43 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:28:44 -0400
+
+
+Started GET "/cars" for ::1 at 2015-04-03 12:29:08 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (1.0ms)[0m  SELECT  "cars".* FROM "cars"  ORDER BY year DESC LIMIT 25 OFFSET 0
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 130ms (Views: 128.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:29:08 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:32:03 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 169ms (Views: 143.2ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:32:03 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:32:04 -0400
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:32:11 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vqIzeBslUSxzxsIcGMD3gsdtonzRjCuFazpiVpXqp0Z6GT259dS/LRY9ojk1IKz8wtpaImgLBdUTNIVzcEh2Zg==", "car"=>{"manufacturer_id"=>"1", "model"=>"", "year"=>"1920", "color"=>"red", "mileage"=>"222", "description"=>"nah"}, "commit"=>"Create Car"}
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  Rendered cars/new.html.erb within layouts/application (11.3ms)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 1.1ms)
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    19:   <p>
+    20:     <%= f.label :manufacturer %><br>
+    21:     <%= f.select(:manufacturer_id) do %>
+    22:       <% @manufacturers.each do |manufacturer| %>
+    23:         <%= content_tag(:option, manufacturer.name, value: manufacturer.id) %>
+    24:       <% end %>
+    25:     <% end %>
+  app/views/cars/new.html.erb:22:in `block (2 levels) in _app_views_cars_new_html_erb__141606053304750536_70224386603700'
+  app/views/cars/new.html.erb:21:in `block in _app_views_cars_new_html_erb__141606053304750536_70224386603700'
+  app/views/cars/new.html.erb:3:in `_app_views_cars_new_html_erb__141606053304750536_70224386603700'
+  app/controllers/cars_controller.rb:19:in `create'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (14.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (98.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (77.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (1.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (171.1ms)
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:33:00 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vqIzeBslUSxzxsIcGMD3gsdtonzRjCuFazpiVpXqp0Z6GT259dS/LRY9ojk1IKz8wtpaImgLBdUTNIVzcEh2Zg==", "car"=>{"manufacturer_id"=>"1", "model"=>"", "year"=>"1920", "color"=>"red", "mileage"=>"222", "description"=>"nah"}, "commit"=>"Create Car"}
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Redirected to http://localhost:3000/cars/new
+Completed 302 Found in 31ms (ActiveRecord: 5.8ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:33:00 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.5ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 120ms (Views: 118.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:33:01 -0400
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:33:04 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2FBj8UzYxZhr9cKZyRmzh2pjY01NdpAGl+M7QkY+yPkc620woikrmQ4Oorzk+ej5b9SbE/Txvlbv7dxno5wZ2Q==", "car"=>{"manufacturer_id"=>"1", "model"=>"", "year"=>"1920", "color"=>"", "mileage"=>"", "description"=>""}, "commit"=>"Create Car"}
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+Redirected to http://localhost:3000/cars/new
+Completed 302 Found in 5ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:33:04 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 107ms (Views: 106.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:33:04 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:33:25 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 141ms (Views: 117.6ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:33:25 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:33:26 -0400
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:33:28 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NtA7CFnDhsEv8GwH+w3GhMALBzRK4JaRaEF925/bJZDyazXJtzJowEoLDCLW7Z36xbz/avNnuMEQT5r+enn0sA==", "car"=>{"manufacturer_id"=>"1", "model"=>"", "year"=>"1920", "color"=>"", "mileage"=>"", "description"=>""}, "commit"=>"Create Car"}
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+Redirected to http://localhost:3000/cars/new
+Completed 302 Found in 7ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:33:28 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 107ms (Views: 106.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:33:28 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:33:29 -0400
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:34:30 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MFlCiSg4ooUVxjbDrDZNl/zNiDarV569FoR7G4bdghL04kxIxslMhHA9VuaB1hbp+XpwaBLQsO1uipw+Y39TMg==", "car"=>{"manufacturer_id"=>"1", "model"=>"", "year"=>"1920", "color"=>"", "mileage"=>"", "description"=>""}, "commit"=>"Create Car"}
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35mManufacturer Load (0.5ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 148ms (Views: 117.0ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/assets/foundation_and_overrides-e63092a8e337cfd0d312ebb4ed1a4d19.css?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/application-d0ecda55a4556376e6fcde052a940730.css?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion-2b104e2d26a3ab8ff360d79d01cbb399.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.abide-66e71b59a5c0804e8ac4d142eea25698.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.alert-a4b62785f888b0fc5f4d8a14839f3c5e.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing-d1ef17605950f770c9452822c077bab8.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown-9a6e2af5e84cf6a6070fda4abad2b3ae.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer-c813bb8e62318c075ad4363dbaea69bb.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange-5a145378c0dbbe7a6278a6c6dea4e85b.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride-8e153a5415ba8dc1f6e06d9a15081bf7.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation-737d3daa8d71195933faf90ce43070ed.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan-9bfa9c80f6599fd9e537a192dca57fb1.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit-3294d1f9445c7409a5bde9270e3163c3.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas-2aee1b8f0d783a8524b41129509f8c0a.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal-c22ba79be29dc09ae08736d5abb85a95.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.slider-7fc3709c633a3e70d20b44e9887d4563.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tab-569e276c0f83148856cb77d2fd7e3f1c.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip-70f133970771bf4271610337ff4f99f2.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar-df289b8649bd202ef0bfc79fd41e5c8b.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/foundation-f82f49f561c31d14f4aba6f653c8cbe2.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started GET "/assets/application-376b6fdb3a8cbbaf1aa4f204d4b8a7c4.js?body=1" for ::1 at 2015-04-03 12:34:31 -0400
+
+
+Started POST "/cars" for ::1 at 2015-04-03 12:36:17 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MFlCiSg4ooUVxjbDrDZNl/zNiDarV569FoR7G4bdghL04kxIxslMhHA9VuaB1hbp+XpwaBLQsO1uipw+Y39TMg==", "car"=>{"manufacturer_id"=>"1", "model"=>"", "year"=>"1920", "color"=>"", "mileage"=>"", "description"=>""}, "commit"=>"Create Car"}
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  Rendered cars/new.html.erb within layouts/application (2.4ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.7ms)
+
+SyntaxError (/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:24: syntax error, unexpected =>, expecting ')'
+...ffer.append=( :include_blank => true );@output_buffer.safe_a...
+...                               ^):
+  app/views/cars/new.html.erb:24: syntax error, unexpected =>, expecting ')'
+  app/controllers/cars_controller.rb:20:in `create'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (66.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (56.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (126.5ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:36:22 -0400
+Processing by CarsController#new as HTML
+  Rendered cars/new.html.erb within layouts/application (2.8ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:24: syntax error, unexpected =>, expecting ')'
+...ffer.append=( :include_blank => true );@output_buffer.safe_a...
+...                               ^):
+  app/views/cars/new.html.erb:24: syntax error, unexpected =>, expecting ')'
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.9ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (14.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (84.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (56.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (122.3ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-04-03 12:36:30 -0400
+Processing by CarsController#new as HTML
+  Rendered cars/new.html.erb within layouts/application (1.5ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/Users/cpsoinos/challenges/car-listings/app/views/cars/new.html.erb:24: syntax error, unexpected =>, expecting keyword_end
+'.freeze;         :include_blank => true 
+                                   ^):
+  app/views/cars/new.html.erb:24: syntax error, unexpected =>, expecting keyword_end
+
+
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.0ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (66.2ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (56.1ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/cpsoinos/.gem/ruby/2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (124.1ms)

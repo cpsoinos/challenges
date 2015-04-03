@@ -12,4 +12,13 @@ FactoryGirl.define do
     country Faker::Address.country
   end
 
+  factory :car do
+    model "Hyundai"
+    color "Red"
+    year 2012
+    mileage 35000
+    description Faker::Lorem.paragraph
+    manufacturer
+  end
+
 end

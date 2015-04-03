@@ -1,0 +1,56 @@
+<h2>Enter details for the new car below:</h2>
+
+<%= form_for @car do |f| %>
+
+  <% if @car.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@car.errors.count, "error") %> prohibited
+        this car from being saved:
+      </h2>
+      <ul>
+        <% @car.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :manufacturer %><br>
+    <%= f.select(:manufacturer_id) do %>
+      <% @manufacturers.each do |manufacturer| %>
+        <%= content_tag(:option, manufacturer.name, value: manufacturer.id) %>
+      <% end %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :model %><br>
+    <%= f.text_field :model %>
+  </p>
+
+  <p>
+    <%= f.label :year %><br>
+    <%= f.select :year, (1920)..(2025) %>
+  </p>
+
+  <p>
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </p>
+
+  <p>
+    <%= f.label :mileage %><br>
+    <%= f.text_field :mileage %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

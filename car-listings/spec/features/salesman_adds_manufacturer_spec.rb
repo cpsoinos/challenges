@@ -11,14 +11,14 @@ feature "salesman adds a manufacturer", %Q{
     sign_in user
   end
 
-  scenario "visits home page" do
-    visit root_path
+  scenario "visits list of manufacturers" do
+    visit manufacturers_path
 
     expect(page).to have_link("Add a new manufacturer")
   end
 
   scenario "visits new manufacturer page" do
-    visit root_path
+    visit manufacturers_path
 
     click_link "Add a new manufacturer"
     expect(page).to have_content("Name")

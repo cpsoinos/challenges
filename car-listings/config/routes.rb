@@ -9,4 +9,16 @@ Rails.application.routes.draw do
     :create
   ]
 
+  resources :cars, only: [
+    :index,
+    :show,
+    :new,
+    :create
+  ] do
+    resources :manufacturers, only: [
+      :index,
+      :show
+    ]
+  end
+
 end
